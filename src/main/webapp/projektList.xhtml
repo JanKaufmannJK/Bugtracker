@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="/META-INF/templates/projektTemplate.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:param name="title" value="BugTracker - Projekte"/>
+    <ui:define name="content">
+        <h2><h:outputText value="Projekte"/></h2>
+        <h:form id="form">
+
+            <!--<h:link value="Projekt hinzufuegen" outcome="/addCustomer1.xhtml"/>-->
+
+            <h:dataTable value="#{projektBean.projektList}" var="p">
+                <h:column>
+                    <f:facet name="header">Projektnummer</f:facet>
+                    #{p.proNr}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Bezeichnung</f:facet>
+                    #{p.bezeichnung}
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>
