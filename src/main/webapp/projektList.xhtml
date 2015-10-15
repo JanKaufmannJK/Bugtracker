@@ -6,10 +6,10 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <ui:param name="title" value="BugTracker - Projekte"/>
     <ui:define name="content">
-        <h2><h:outputText value="Projekte"/></h2>
+        <h2><h:outputText value="Projektliste"/></h2>
         <h:form id="form">
 
-            <!--<h:link value="Projekt hinzufuegen" outcome="/addCustomer1.xhtml"/>-->
+            <h:link value="Projekt hinzufuegen" outcome="/addProjekt.xhtml"/>
 
             <h:dataTable value="#{projektBean.projektList}" var="p">
                 <h:column>

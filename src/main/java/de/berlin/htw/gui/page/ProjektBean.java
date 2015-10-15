@@ -16,10 +16,10 @@ public class ProjektBean {
     //Testdaten
     private static final Projekt[] projektList = new Projekt[] {
             new Projekt(1L, "Projekt 1"),
-            new Projekt(1L, "Projekt 2"),
-            new Projekt(1L, "Projekt 3"),
-            new Projekt(1L, "Projekt 4"),
-            new Projekt(1L, "Projekt 5")
+            new Projekt(2L, "Projekt 2"),
+            new Projekt(3L, "Projekt 3"),
+            new Projekt(4L, "Projekt 4"),
+            new Projekt(5L, "Projekt 5")
     };
 
     public Projekt[] getProjektList() {

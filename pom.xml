@@ -70,7 +70,7 @@
     </dependencies>
 
     <build>
-        <finalName>mygourmet-fullstack-spring</finalName>
+        <finalName>bugtracker</finalName>
         <defaultGoal>install</defaultGoal>
         <pluginManagement>
             <plugins>
