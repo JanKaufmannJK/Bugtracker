@@ -4,6 +4,8 @@ import de.berlin.htw.domain.Projekt;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by JanKa on 12.10.2015.
@@ -13,20 +15,26 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class ProjektBean {
 
-    //Testdaten
-    private static final Projekt[] projektList = new Projekt[] {
-            new Projekt(1L, "Projekt 1"),
-            new Projekt(2L, "Projekt 2"),
-            new Projekt(3L, "Projekt 3"),
-            new Projekt(4L, "Projekt 4"),
-            new Projekt(5L, "Projekt 5")
-    };
+    private Projekt projekt = new Projekt();
 
-    public Projekt[] getProjektList() {
+    private List<Projekt> projektList = new ArrayList<Projekt>();
+
+    public List<Projekt> getProjektList() {
 
         return projektList;
 
     }
 
+    public Projekt getProjekt() {
+        return projekt;
+    }
 
+    public void setProjekt(Projekt projekt) {
+        this.projekt = projekt;
+    }
+
+    public String speichern() {
+        projektList.add(projekt);
+        return "/projektList.xhtml";
+    }
 }

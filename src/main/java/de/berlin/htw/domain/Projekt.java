@@ -8,6 +8,8 @@ import java.util.List;
  */
 public class Projekt {
 
+    public Projekt(){}
+
     public Projekt(Long proNr, String bezeichnung) {
         this.proNr = proNr;
         this.bezeichnung = bezeichnung;
