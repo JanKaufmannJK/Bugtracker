@@ -14,12 +14,12 @@
             <h:panelGrid id="projekt" columns="2">
                 <h:outputLabel for="proNr" value="Projektnummer"/>
                 <h:inputText id="proNr"
-                             value="#{projektBean.projekt.proNr}"/>
+                             value="#{addProjectBean.projekt.proNr}"/>
                 <h:outputLabel for="bezeichnung" value="Bezeichnung"/>
                 <h:inputText id="bezeichnung" maxlength="64"
-                             value="#{projektBean.projekt.bezeichnung}"/>
+                             value="#{addProjectBean.projekt.bezeichnung}"/>
             </h:panelGrid>
-            <h:commandButton id="save" action="#{projektBean.speichern()}" value="Speichern" />
+            <h:commandButton id="save" action="#{addProjectBean.speichern}" value="Speichern" />
             <h:commandButton id="cancel" action="/projektList.xhtml" value="Abbrechen" />
         </h:form>
     </ui:define>

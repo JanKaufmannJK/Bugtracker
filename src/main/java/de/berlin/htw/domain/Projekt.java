@@ -3,46 +3,63 @@ package de.berlin.htw.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+
 /**
  * Created by JanKa on 12.10.2015.
  */
+
+@Entity
+@Table(name = "PROJEKT")
+@SequenceGenerator(name = "PROJEKT_SEQUENCE_GENERATOR", sequenceName = "PROJEKT_SEQUENCE")
 public class Projekt {
 
-    public Projekt(){}
+	public Projekt() {
+	}
 
-    public Projekt(Long proNr, String bezeichnung) {
-        this.proNr = proNr;
-        this.bezeichnung = bezeichnung;
-    }
+	public Projekt(Long proNr, String bezeichnung) {
+		this.proNr = proNr;
+		this.bezeichnung = bezeichnung;
+	}
 
-    private Long proNr;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PROJEKT_SEQUENCE_GENERATOR")
+	@Column(name = "PRONR")
+	private Long proNr;
 
-    private String bezeichnung;
+	@Column(name = "BEZEICHNUNG")
+	private String bezeichnung;
 
-    private List<Fehler> fehlerList = new ArrayList<Fehler>();
+	private List<Fehler> fehlerList = new ArrayList<Fehler>();
 
+	public Long getProNr() {
+		return proNr;
+	}
 
-    public Long getProNr() {
-        return proNr;
-    }
+	public void setProNr(Long proNr) {
+		this.proNr = proNr;
+	}
 
-    public void setProNr(Long proNr) {
-        this.proNr = proNr;
-    }
+	public String getBezeichnung() {
+		return bezeichnung;
+	}
 
-    public String getBezeichnung() {
-        return bezeichnung;
-    }
+	public void setBezeichnung(String bezeichnung) {
+		this.bezeichnung = bezeichnung;
+	}
 
-    public void setBezeichnung(String bezeichnung) {
-        this.bezeichnung = bezeichnung;
-    }
+	public List<Fehler> getFehlerList() {
+		return fehlerList;
+	}
 
-    public List<Fehler> getFehlerList() {
-        return fehlerList;
-    }
-
-    public void setFehlerList(List<Fehler> fehlerList) {
-        this.fehlerList = fehlerList;
-    }
+	public void setFehlerList(List<Fehler> fehlerList) {
+		this.fehlerList = fehlerList;
+	}
 }
