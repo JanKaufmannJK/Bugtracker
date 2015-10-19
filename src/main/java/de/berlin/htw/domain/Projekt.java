@@ -18,7 +18,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "PROJEKT")
-@SequenceGenerator(name = "PROJEKT_SEQUENCE_GENERATOR", sequenceName = "PROJEKT_SEQUENCE")
+//@SequenceGenerator(name = "PROJEKT_SEQUENCE_GENERATOR", sequenceName = "PROJEKT_SEQUENCE")
 public class Projekt {
 
 	public Projekt() {
@@ -29,15 +29,15 @@ public class Projekt {
 		this.bezeichnung = bezeichnung;
 	}
 
+//	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PROJEKT_SEQUENCE_GENERATOR")
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PROJEKT_SEQUENCE_GENERATOR")
 	@Column(name = "PRONR")
 	private Long proNr;
 
 	@Column(name = "BEZEICHNUNG")
 	private String bezeichnung;
 
-	private List<Fehler> fehlerList = new ArrayList<Fehler>();
+//	private List<Fehler> fehlerList = new ArrayList<Fehler>();
 
 	public Long getProNr() {
 		return proNr;
@@ -55,11 +55,11 @@ public class Projekt {
 		this.bezeichnung = bezeichnung;
 	}
 
-	public List<Fehler> getFehlerList() {
-		return fehlerList;
-	}
-
-	public void setFehlerList(List<Fehler> fehlerList) {
-		this.fehlerList = fehlerList;
-	}
+//	public List<Fehler> getFehlerList() {
+//		return fehlerList;
+//	}
+//
+//	public void setFehlerList(List<Fehler> fehlerList) {
+//		this.fehlerList = fehlerList;
+//	}
 }

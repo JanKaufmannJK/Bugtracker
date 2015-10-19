@@ -7,17 +7,18 @@ import javax.inject.Inject;
 
 import de.berlin.htw.domain.Projekt;
 import de.berlin.htw.service.BugtrackerService;
+import de.berlin.htw.service.BugtrackerServiceImpl;
+import de.berlin.htw.service.JPAUtil;
 
 @RequestScoped
 @ManagedBean
 public class AddProjectBean {
 	
+	private BugtrackerService bs =  new BugtrackerServiceImpl();
+	
 	@ManagedProperty(value="#{projektBean}")
 	private ProjektBean projektBean;
-
-	@Inject
-	private BugtrackerService bs;
-	
+    
 	private Projekt projekt = new Projekt();
 
 	public Projekt getProjekt() {
