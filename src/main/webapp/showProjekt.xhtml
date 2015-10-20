@@ -14,6 +14,16 @@
 			<h:outputLabel value="#{projektBean.projekt.proNr}" />
 			<h:outputLabel value="Bezeichnung" />
 			<h:outputLabel value="#{projektBean.projekt.bezeichnung}" />
+			<h:dataTable value="#{projektBean.projekt.fehlerList}" var="f">
+				<h:column>
+					<f:facet name="header">FehlerNummer</f:facet>
+                    #{f.feNr}
+                </h:column>
+				<h:column>
+					<f:facet name="header">Bezeichnung</f:facet>
+                    #{f.bezeichnung}
+                </h:column>
+			</h:dataTable>
 		</h:panelGrid>
 	</ui:define>
 

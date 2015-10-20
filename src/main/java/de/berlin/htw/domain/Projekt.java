@@ -5,9 +5,11 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -37,7 +39,8 @@ public class Projekt {
 	@Column(name = "BEZEICHNUNG")
 	private String bezeichnung;
 
-//	private List<Fehler> fehlerList = new ArrayList<Fehler>();
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "projekt")
+	private List<Fehler> fehlerList = new ArrayList<Fehler>();
 
 	public Long getProNr() {
 		return proNr;
@@ -55,11 +58,11 @@ public class Projekt {
 		this.bezeichnung = bezeichnung;
 	}
 
-//	public List<Fehler> getFehlerList() {
-//		return fehlerList;
-//	}
-//
-//	public void setFehlerList(List<Fehler> fehlerList) {
-//		this.fehlerList = fehlerList;
-//	}
+	public List<Fehler> getFehlerList() {
+		return fehlerList;
+	}
+
+	public void setFehlerList(List<Fehler> fehlerList) {
+		this.fehlerList = fehlerList;
+	}
 }
