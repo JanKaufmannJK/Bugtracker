@@ -1,25 +1,25 @@
 package de.berlin.htw.gui.page;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
-import javax.inject.Inject;
+import javax.inject.Named;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 
 import de.berlin.htw.domain.Projekt;
 import de.berlin.htw.service.BugtrackerService;
-import de.berlin.htw.service.BugtrackerServiceImpl;
-import de.berlin.htw.service.JPAUtil;
 
-@RequestScoped
-@ManagedBean
-public class AddProjectBean {
+@Named("addProjektBean")
+@Scope("request")
+public class AddProjektBean {
 	
-	private BugtrackerService bs =  new BugtrackerServiceImpl();
+    @Autowired
+	private BugtrackerService bs;
 	
-	@ManagedProperty(value="#{projektBean}")
+    @Autowired
 	private ProjektBean projektBean;
     
-	private Projekt projekt = new Projekt();
+    @Autowired
+	private Projekt projekt;
 
 	public Projekt getProjekt() {
 		return projekt;
@@ -32,6 +32,7 @@ public class AddProjectBean {
 	public String speichern() {
 		projektBean.getProjektList().add(projekt);
 		bs.persistProjekt(projekt);
+		projekt = new Projekt();
 		return "/projektList.xhtml";
 	}
 

@@ -13,5 +13,11 @@
             de.berlin.htw.gui.jsf.ParameterPhaseListener
         </phase-listener>
     </lifecycle>
+    
+    <application>
+    	<el-resolver>
+      		org.springframework.web.jsf.el.SpringBeanFacesELResolver
+    	</el-resolver>
+  	</application>
 
 </faces-config>

@@ -10,9 +10,9 @@ public interface BugtrackerService {
 
 	public List<Projekt> getProjektListe();
 	
-	public List<Projekt> selectProjektList();
-	
 	public void setProjektListe(List<Projekt> projektListe);
+	
+	public List<Projekt> selectProjekteFromDb();
 
 	public void persistProjekt(Projekt projekt);
 }

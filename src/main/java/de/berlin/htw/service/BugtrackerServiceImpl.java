@@ -3,65 +3,59 @@ package de.berlin.htw.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ApplicationScoped;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
+
+import org.springframework.context.ApplicationEvent;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.transaction.annotation.Transactional;
 
 import de.berlin.htw.domain.Projekt;
 
-@ApplicationScoped
+@Named("bugtrackerService")
+@Scope("singleton")
 public class BugtrackerServiceImpl implements BugtrackerService {
-	
-	List<Projekt> projektListe = new ArrayList<Projekt>();
-	
-    @PostConstruct
-    private void initialize() {
-    	projektListe = selectProjektList();
+    
+    @PersistenceContext
+    private EntityManager em;
+    
+    private List<Projekt> projektListe = new ArrayList<Projekt>();
+    
+    public EntityManager getEm() {
+        return em;
     }
-
-	private EntityManager em = JPAUtil.getEm();
-
-	public EntityManager getEm() {
-		return em;
-	}
-
-	public void setEm(EntityManager em) {
-		this.em = em;
-	}
-
-	@Transactional
-	public void persistProjekt(Projekt projekt) {
-
-		em.getTransaction().begin();
-		em.persist(projekt);
-		em.getTransaction().commit();
-	}
-
-	@Transactional
-	public List<Projekt> selectProjektList() {
-
-		TypedQuery<Projekt> query = em.createQuery("SELECT c FROM Projekt c", Projekt.class);
-		List<Projekt> results = query.getResultList();
-
-		return results;
-	}
-	
-	public Projekt findByProNr(long proNr){
-		for (Projekt p : projektListe) {
+    
+    @Transactional
+    public void persistProjekt(Projekt projekt) {
+        em.persist(projekt);
+    }
+    
+    @Transactional
+    public List<Projekt> selectProjekteFromDb() {
+        TypedQuery<Projekt> query = em.createQuery("SELECT c FROM Projekt c", Projekt.class);
+        projektListe = query.getResultList();
+        return projektListe;
+    }
+    
+    public Projekt findByProNr(long proNr) {
+        for (Projekt p : projektListe) {
             if (p.getProNr() == proNr) {
                 return p;
             }
         }
         return null;
-	}
-
-	public List<Projekt> getProjektListe() {
-		return projektListe;
-	}
-
-	public void setProjektListe(List<Projekt> projektListe) {
-		this.projektListe = projektListe;
-	}
+    }
+    
+    public void setProjektListe(List<Projekt> projektListe) {
+        this.projektListe = projektListe;
+    }
+    
+    public List<Projekt> getProjektListe() {
+        return projektListe;
+    }
+    
 }
