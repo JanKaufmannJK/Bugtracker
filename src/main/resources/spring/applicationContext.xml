@@ -21,8 +21,8 @@
 	<bean id="editFehlerBean" class="de.berlin.htw.gui.page.EditFehlerBean" />
 	<bean id="addKommentarBean" class="de.berlin.htw.gui.page.AddKommentarBean" />
 	<bean id="editKommentarBean" class="de.berlin.htw.gui.page.EditKommentarBean" />
-	<bean id="FehlerBean" class="de.berlin.htw.gui.page.FehlerBean" />
-	<bean id="Kommentar" class="de.berlin.htw.domain.Kommentar" />
+	<bean id="fehlerBean" class="de.berlin.htw.gui.page.FehlerBean" />
+	<bean id="kommentar" class="de.berlin.htw.domain.Kommentar" />
 
 
 	<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"
