@@ -32,8 +32,10 @@ public class AddFehlerBean {
 
 	public String speichern() {
 	    fehler.setProjekt(projektBean.getProjekt());
+	    fehler.setFeNr((long) (projektBean.getProjekt().getFehlerList().size()+1));
 		projektBean.getProjekt().getFehlerList().add(fehler);
 		bs.persistFehler(fehler);
+		fehler = new Fehler();
 		
 		return "/showProjekt.xhtml";
 	}

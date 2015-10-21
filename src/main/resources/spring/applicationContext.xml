@@ -14,7 +14,8 @@
 	<bean id="bugtrackerService" class="de.berlin.htw.service.BugtrackerServiceImpl" />
 	<bean id="projektBean" class="de.berlin.htw.gui.page.ProjektBean" />
 	<bean id="addProjektBean" class="de.berlin.htw.gui.page.AddProjektBean" />
-	<bean id="Projekt" class="de.berlin.htw.domain.Projekt" />
+	<bean id="projekt" class="de.berlin.htw.domain.Projekt" />
+	<bean id="fehler" class="de.berlin.htw.domain.Fehler" />
 	<bean id="addFehlerBean" class="de.berlin.htw.gui.page.AddFehlerBean" />
 
 

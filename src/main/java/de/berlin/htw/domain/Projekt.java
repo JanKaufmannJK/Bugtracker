@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
+import javax.persistence.TableGenerator;
 
 /**
  * Created by JanKa on 12.10.2015.
@@ -20,7 +20,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "PROJEKT")
-//@SequenceGenerator(name = "PROJEKT_SEQUENCE_GENERATOR", sequenceName = "PROJEKT_SEQUENCE")
+// @SequenceGenerator(name = "PROJEKT_SEQUENCE_GENERATOR", sequenceName =
+// "PROJEKT_SEQUENCE")
 public class Projekt {
 
 	public Projekt() {
@@ -31,7 +32,8 @@ public class Projekt {
 		this.bezeichnung = bezeichnung;
 	}
 
-//	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PROJEKT_SEQUENCE_GENERATOR")
+	@TableGenerator(name = "proGen", table = "ID_GEN", pkColumnName = "GEN_KEY", valueColumnName = "GEN_VALUE", pkColumnValue = "PROJEKT_ID", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "proGen")
 	@Id
 	@Column(name = "PRONR")
 	private Long proNr;

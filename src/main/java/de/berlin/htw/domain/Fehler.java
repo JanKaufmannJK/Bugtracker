@@ -6,10 +6,13 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 /**
  * Created by JanKa on 12.10.2015.
@@ -18,27 +21,32 @@ import javax.persistence.Table;
 @Table(name = "FEHLER")
 public class Fehler {
 
+	@TableGenerator(name = "proGen", table = "ID_GEN", pkColumnName = "GEN_KEY", valueColumnName = "GEN_VALUE", pkColumnValue = "FEHLER_ID", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "proGen")
 	@Id
-	@Column(name ="FENR")
-    private Long feNr;
+	@Column(name ="FEHLER_ID")
+	private Long fehler_id;
 
-	@Column(name ="BEZEICHNUNG")
-    private String bezeichnung;
+	@Column(name = "FENR")
+	private Long feNr;
 
-	@Column(name ="BESCHREIBUNG")
-    private String beschreibung;
+	@Column(name = "BEZEICHNUNG")
+	private String bezeichnung;
 
-	@Column(name ="ERSTELLT")
-    private Date erstellt;
+	@Column(name = "BESCHREIBUNG")
+	private String beschreibung;
 
-	@Column(name ="STATUS")
-    private Status status;
+	@Column(name = "ERSTELLT")
+	private Date erstellt;
 
-	@Column(name ="PRIO")
-    private Prioritaet prioritaet;
-	
-    @ManyToOne
-    @JoinColumn(name = "PROJEKT_PRONR", referencedColumnName = "PRONR")
+	@Column(name = "STATUS")
+	private String status;
+
+	@Column(name = "PRIO")
+	private String prioritaet;
+
+	@ManyToOne
+	@JoinColumn(name = "PROJEKT_PRONR", referencedColumnName = "PRONR")
 	private Projekt projekt;
 
 	public Long getFeNr() {
@@ -73,29 +81,29 @@ public class Fehler {
 		this.erstellt = erstellt;
 	}
 
-	public Status getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(Status status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
-	public Prioritaet getPrioritaet() {
+	public String getPrioritaet() {
 		return prioritaet;
 	}
 
-	public void setPrioritaet(Prioritaet prioritaet) {
+	public void setPrioritaet(String prioritaet) {
 		this.prioritaet = prioritaet;
 	}
 
-    public Projekt getProjekt() {
-        return projekt;
-    }
+	public Projekt getProjekt() {
+		return projekt;
+	}
 
-    public void setProjekt(Projekt projekt) {
-        this.projekt = projekt;
-    }
+	public void setProjekt(Projekt projekt) {
+		this.projekt = projekt;
+	}
 
-//    private List<Kommentar> kommentarList = new ArrayList<Kommentar>();
+	// private List<Kommentar> kommentarList = new ArrayList<Kommentar>();
 }
