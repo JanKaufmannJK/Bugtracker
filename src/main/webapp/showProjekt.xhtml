@@ -12,18 +12,20 @@
 		<h:form id="form">
 			<h:link value="Fehler hinzufuegen" outcome="/addFehler.xhtml" />
 
-			<h:panelGrid id="projekt" columns="2">
-				<h:outputLabel value="Projektnummer" />
-				<h:outputLabel value="#{projektBean.projekt.proNr}" />
-				<h:outputLabel value="Bezeichnung" />
-				<h:outputLabel value="#{projektBean.projekt.bezeichnung}" />
+			<h:panelGrid id="projekt" columns="2" border="1" cellpadding="10"
+				cellspacing="1">
+				<f:facet name="header">
+					<h:outputText value="Bezeichnung " />
+					<h:outputText value="#{projektBean.projekt.bezeichnung}" />
+				</f:facet>
+
 				<h:dataTable value="#{projektBean.projekt.fehlerList}" var="f">
 					<h:column>
 						<f:facet name="header">FehlerNummer</f:facet>
                     #{f.feNr}
                 </h:column>
 					<h:column>
-						<f:facet name="header">Bezeichnung1</f:facet>
+						<f:facet name="header">Bezeichnung</f:facet>
                     #{f.bezeichnung}
                 </h:column>
 				</h:dataTable>

@@ -15,20 +15,23 @@
 
 
 		<h:form id="form">
-			<h:panelGrid id="fehler" columns="2">
-				<h:outputLabel for="fe" value="Fehlernummer" />
-				<h:outputLabel for="fe" value="#{fn:length(projektBean.projekt.fehlerList)+1}" />
-<!-- 				<h:inputText id="feNr" value="#{addFehlerBean.fehler.feNr}" /> -->
-				<h:outputLabel for="bezeichnung" value="Bezeichnung" />
-				<h:inputText id="bezeichnung" maxlength="64"
+			<h:panelGrid id="fehler" columns="2" border="1" cellpadding="10"
+				cellspacing="1">
+				<f:facet name="header">
+					<h:outputText value="Fehlernummer " />
+					<h:outputText value="#{fn:length(projektBean.projekt.fehlerList)+1}" />
+				</f:facet>
+				<h:outputLabel value="Bezeichnung" />
+				<h:inputText maxlength="64"
 					value="#{addFehlerBean.fehler.bezeichnung}" />
-<!-- 				<h:outputLabel for="beschreibung" value="Beschreibung" /> -->
-<!-- 				<h:inputText id="beschreibung" maxlength="2000" -->
-<!-- 					value="#{addFehlerBean.fehler.beschreibung}" /> -->
-<!-- 				<h:outputLabel for="prioritaet" value="Prioritaet" /> -->
-<!-- 				<h:inputText id="prioritaet" value="#{addFehlerBean.fehler.prioritaet}" /> -->
-<!-- 				<h:outputLabel for="status" value="Status" /> -->
-<!-- 				<h:inputText id="status" value="#{addFehlerBean.fehler.status}" />			 -->
+				<h:outputLabel for="beschreibung" value="Beschreibung" />
+				<h:inputText id="beschreibung" maxlength="2000"
+					value="#{addFehlerBean.fehler.beschreibung}" />
+				<h:outputLabel for="prioritaet" value="Prioritaet" />
+				<h:inputText id="prioritaet"
+					value="#{addFehlerBean.fehler.prioritaet}" />
+				<h:outputLabel for="status" value="Status" />
+				<h:inputText id="status" value="#{addFehlerBean.fehler.status}" />
 			</h:panelGrid>
 			<h:commandButton id="save" action="#{addFehlerBean.speichern}"
 				value="Speichern" />

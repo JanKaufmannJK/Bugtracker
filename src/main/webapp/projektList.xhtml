@@ -13,7 +13,8 @@
 
 			<h:link value="Projekt hinzufuegen" outcome="/addProjekt.xhtml" />
 
-			<h:dataTable value="#{projektBean.projektList}" var="p">
+			<h:dataTable value="#{projektBean.projektList}" var="p" border="1" cellpadding="10"
+				cellspacing="1">
 				<h:column>
 					<f:facet name="header">Projektnummer</f:facet>
                     #{p.proNr}
