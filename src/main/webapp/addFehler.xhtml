@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui:composition template="/META-INF/templates/projektTemplate.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+	<ui:param name="title" value="BugTracker - Projekte" />
+
+	<ui:define name="content">
+		<h2>
+			<h:outputText value="Fehler hinzufuegen" />
+		</h2>
+
+
+		<h:form id="form">
+			<h:panelGrid id="fehler" columns="5">
+				<h:outputLabel for="feNr" value="Fehlernummer" />
+				<h:inputText id="feNr" value="#{addFehlerBean.fehler.feNr}" />
+				<h:outputLabel for="bezeichnung" value="Bezeichnung" />
+				<h:inputText id="bezeichnung" maxlength="64"
+					value="#{addFehlerBean.fehler.bezeichnung}" />
+				<h:outputLabel for="beschreibung" value="Beschreibung" />
+				<h:inputText id="beschreibung" maxlength="2000"
+					value="#{addFehlerBean.fehler.beschreibung}" />
+				<h:outputLabel for="prioritaet" value="Prioritaet" />
+				<h:inputText id="prioritaet" value="#{addFehlerBean.fehler.prioritaet}" />
+				<h:outputLabel for="status" value="Status" />
+				<h:inputText id="status" value="#{addFehlerBean.fehler.status}" />			
+			</h:panelGrid>
+			<h:commandButton id="save" action="#{addFehlerBean.speichern}"
+				value="Speichern" />
+
+			<h:commandButton id="cancel" action="/showProjekt.xhtml"
+				value="Abbrechen" />
+		</h:form>
+	</ui:define>
+
+</ui:composition>

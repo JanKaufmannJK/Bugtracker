@@ -89,5 +89,13 @@ public class Fehler {
 		this.prioritaet = prioritaet;
 	}
 
+    public Projekt getProjekt() {
+        return projekt;
+    }
+
+    public void setProjekt(Projekt projekt) {
+        this.projekt = projekt;
+    }
+
 //    private List<Kommentar> kommentarList = new ArrayList<Kommentar>();
 }

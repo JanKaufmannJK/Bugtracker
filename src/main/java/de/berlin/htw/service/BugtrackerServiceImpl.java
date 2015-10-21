@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.transaction.annotation.Transactional;
 
+import de.berlin.htw.domain.Fehler;
 import de.berlin.htw.domain.Projekt;
 
 @Named("bugtrackerService")
@@ -32,6 +33,10 @@ public class BugtrackerServiceImpl implements BugtrackerService {
     @Transactional
     public void persistProjekt(Projekt projekt) {
         em.persist(projekt);
+    }
+    @Transactional
+    public void persistFehler(Fehler fehler) {
+        em.persist(fehler);
     }
     
     @Transactional

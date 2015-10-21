@@ -9,22 +9,27 @@
 		<h2>
 			<h:outputText value="Projekt" />
 		</h2>
-		<h:panelGrid id="projekt" columns="2">
-			<h:outputLabel value="Projektnummer" />
-			<h:outputLabel value="#{projektBean.projekt.proNr}" />
-			<h:outputLabel value="Bezeichnung" />
-			<h:outputLabel value="#{projektBean.projekt.bezeichnung}" />
-			<h:dataTable value="#{projektBean.projekt.fehlerList}" var="f">
-				<h:column>
-					<f:facet name="header">FehlerNummer</f:facet>
+		<h:form id="form">
+			<h:link value="Fehler hinzufuegen" outcome="/addFehler.xhtml" />
+
+			<h:panelGrid id="projekt" columns="2">
+				<h:outputLabel value="Projektnummer" />
+				<h:outputLabel value="#{projektBean.projekt.proNr}" />
+				<h:outputLabel value="Bezeichnung" />
+				<h:outputLabel value="#{projektBean.projekt.bezeichnung}" />
+				<h:dataTable value="#{projektBean.projekt.fehlerList}" var="f">
+					<h:column>
+						<f:facet name="header">FehlerNummer</f:facet>
                     #{f.feNr}
                 </h:column>
-				<h:column>
-					<f:facet name="header">Bezeichnung</f:facet>
+					<h:column>
+						<f:facet name="header">Bezeichnung1</f:facet>
                     #{f.bezeichnung}
                 </h:column>
-			</h:dataTable>
-		</h:panelGrid>
+				</h:dataTable>
+			</h:panelGrid>
+
+		</h:form>
 	</ui:define>
 
 </ui:composition>

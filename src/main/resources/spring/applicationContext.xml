@@ -15,6 +15,7 @@
 	<bean id="projektBean" class="de.berlin.htw.gui.page.ProjektBean" />
 	<bean id="addProjektBean" class="de.berlin.htw.gui.page.AddProjektBean" />
 	<bean id="Projekt" class="de.berlin.htw.domain.Projekt" />
+	<bean id="addFehlerBean" class="de.berlin.htw.gui.page.AddFehlerBean" />
 
 
 	<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"
