@@ -8,12 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 
 import de.berlin.htw.domain.Fehler;
+import de.berlin.htw.domain.Kommentar;
 import de.berlin.htw.domain.Projekt;
 import de.berlin.htw.service.BugtrackerService;
 
-@Named("addFehlerBean")
+@Named("editFehlerBean")
 @Scope("request")
-public class AddFehlerBean {
+public class EditFehlerBean {
 
 	@Autowired
 	private BugtrackerService bs;
@@ -32,22 +33,21 @@ public class AddFehlerBean {
 		this.fehler = fehler;
 	}
 
-	public String speichern() {
-		Date date = new Date();
-		fehler.setErstellt(date);
-		fehler.setProjekt(projektBean.getProjekt());
-
-		if (projektBean.getProjekt().getFehlerList().isEmpty()) {
-			fehler.setFeNr(1L);
-		} else {
-			int lastFeNr = projektBean.getProjekt().getFehlerList().size() - 1;
-			fehler.setFeNr(projektBean.getProjekt().getFehlerList().get(lastFeNr).getFeNr() + 1);
-		}
-		projektBean.getProjekt().getFehlerList().add(fehler);
-		bs.persistObject(fehler);
+	public String showFehler(Fehler fehler) {
+		this.setFehler(fehler);
+		return "/editFehler.xhtml";
+	}
+	
+	public String aendern(){
+		bs.mergeObject(fehler);
 		fehler = new Fehler();
-
 		return "/showProjekt.xhtml";
+	}
+	
+	public String removeFehler(Fehler fehler){
+		projektBean.getProjekt().getFehlerList().remove(fehler);
+		bs.removeObject(fehler);		
+		return "/showProjekt";
 	}
 
 	public ProjektBean getProjektBean() {

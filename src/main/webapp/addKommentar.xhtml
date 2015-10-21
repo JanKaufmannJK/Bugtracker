@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui:composition template="/META-INF/templates/projektTemplate.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+	<ui:param name="title" value="BugTracker - Projekte" />
+
+	<ui:define name="content">
+		<h2>
+			<h:outputText value="Kommentar hinzufuegen" />
+		</h2>
+
+
+		<h:form id="form">
+			<h:panelGrid id="kommentar" columns="2" border="1" cellpadding="10"
+				cellspacing="1">
+				<h:outputLabel for="text" value="Text" />
+				<h:inputText required="true" maxlength="2000" id="text" 
+					value="#{addKommentarBean.kommentar.text}" />
+			</h:panelGrid>
+			<h:commandButton id="save" action="#{addKommentarBean.speichern}"
+				value="Speichern" />
+
+			<h:commandButton id="cancel" action="/showFehler.xhtml"
+				value="Abbrechen" immediate="true" />
+		</h:form>
+	</ui:define>
+
+</ui:composition>

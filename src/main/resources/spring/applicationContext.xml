@@ -6,6 +6,7 @@
     	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+     
 
 	<tx:annotation-driven />
 	<context:annotation-config />
@@ -17,6 +18,11 @@
 	<bean id="projekt" class="de.berlin.htw.domain.Projekt" />
 	<bean id="fehler" class="de.berlin.htw.domain.Fehler" />
 	<bean id="addFehlerBean" class="de.berlin.htw.gui.page.AddFehlerBean" />
+	<bean id="editFehlerBean" class="de.berlin.htw.gui.page.EditFehlerBean" />
+	<bean id="addKommentarBean" class="de.berlin.htw.gui.page.AddKommentarBean" />
+	<bean id="editKommentarBean" class="de.berlin.htw.gui.page.EditKommentarBean" />
+	<bean id="FehlerBean" class="de.berlin.htw.gui.page.FehlerBean" />
+	<bean id="Kommentar" class="de.berlin.htw.domain.Kommentar" />
 
 
 	<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"
@@ -40,7 +46,7 @@
 				<prop key="hibernate.order_updates">true</prop>
 				<prop key="hibernate.jdbc.batch_versioned_data">true</prop>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
-				
+
 			</props>
 		</property>
 		<property name="packagesToScan" value="de.berlin.htw" />

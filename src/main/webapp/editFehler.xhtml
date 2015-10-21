@@ -10,30 +10,34 @@
 
 	<ui:define name="content">
 		<h2>
-			<h:outputText value="Fehler hinzufuegen" />
+			<h:outputText value="Fehler ändern" />
 		</h2>
 
 
 		<h:form id="form">
 			<h:panelGrid id="fehler" columns="2" border="1" cellpadding="10"
 				cellspacing="1">
+				<f:facet name="header">
+					<h:outputText value="Fehlernummer " />
+					<h:outputText value="TODO" />
+				</f:facet>
 				<h:outputLabel value="Bezeichnung" />
 				<h:inputText required="true" maxlength="64" id="bezeichnung" 
-					value="#{addFehlerBean.fehler.bezeichnung}" />
+					value="#{editFehlerBean.fehler.bezeichnung}" />
 				<h:outputLabel for="beschreibung" value="Beschreibung" />
 				<h:inputText required="true" id="beschreibung" maxlength="2000"
-					value="#{addFehlerBean.fehler.beschreibung}" />
+					value="#{editFehlerBean.fehler.beschreibung}" />
 				<h:outputLabel for="prioritaet" value="Prioritaet" />
 				<h:inputText required="true" id="prioritaet" maxlength="1"
-					value="#{addFehlerBean.fehler.prioritaet}" />
+					value="#{editFehlerBean.fehler.prioritaet}" />
 				<h:outputLabel for="status" value="Status" />
-				<h:inputText required="true" id="status" maxlength="1" value="#{addFehlerBean.fehler.status}" />
+				<h:inputText required="true" id="status" maxlength="1" value="#{editFehlerBean.fehler.status}" />
 			</h:panelGrid>
-			<h:commandButton id="save" action="#{addFehlerBean.speichern}"
+			<h:commandButton id="save" action="#{editFehlerBean.aendern}"
 				value="Speichern" />
 
-			<h:commandButton id="cancel" action="/showProjekt.xhtml"
-				value="Abbrechen" immediate="true" />
+			<h:commandButton id="cancel" action="/showFehler.xhtml"
+				value="Abbrechen" immediate="true"/>
 		</h:form>
 	</ui:define>
 

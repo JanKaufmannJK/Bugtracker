@@ -28,6 +28,28 @@
 						<f:facet name="header">Bezeichnung</f:facet>
                     #{f.bezeichnung}
                 </h:column>
+					<h:column>
+						<f:facet name="header">Beschreibung</f:facet>
+                    #{f.beschreibung}
+                </h:column>
+					<h:column>
+						<f:facet name="header">Erstellt</f:facet>
+                    #{f.erstellt}
+                </h:column>
+					<h:column>
+						<f:facet name="header">Status</f:facet>
+                    #{f.status}
+                </h:column>
+					<h:column>
+						<f:facet name="header">Prioritaet</f:facet>
+                    #{f.prioritaet}
+                </h:column>
+                <h:column>
+					<f:facet name="header">Aktion</f:facet>
+					<h:commandLink value="öffnen  " action="#{fehlerBean.showFehler(f)}" />
+					<h:commandLink value="editieren  " action="#{editFehlerBean.showFehler(f)}" />
+					<h:commandLink value="loeschen" action="#{editFehlerBean.removeFehler(f)}" />
+				</h:column>
 				</h:dataTable>
 			</h:panelGrid>
 

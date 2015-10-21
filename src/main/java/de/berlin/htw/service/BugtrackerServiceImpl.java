@@ -31,9 +31,21 @@ public class BugtrackerServiceImpl implements BugtrackerService {
     }
     
     @Transactional
-    public void persistProjekt(Projekt projekt) {
-        em.persist(projekt);
+    public <T> void persistObject(T entity) {
+        em.persist(entity);
     }
+    
+    @Transactional
+    public <T> void removeObject(T entity) {
+    	entity = em.merge(entity);
+    	    em.remove(entity);
+    }
+    
+    @Transactional
+    public <T> void mergeObject(T entity) {
+        em.merge(entity);
+    }
+    
     @Transactional
     public void persistFehler(Fehler fehler) {
         em.persist(fehler);
@@ -44,15 +56,6 @@ public class BugtrackerServiceImpl implements BugtrackerService {
         TypedQuery<Projekt> query = em.createQuery("SELECT c FROM Projekt c", Projekt.class);
         projektListe = query.getResultList();
         return projektListe;
-    }
-    
-    public Projekt findByProNr(long proNr) {
-        for (Projekt p : projektListe) {
-            if (p.getProNr() == proNr) {
-                return p;
-            }
-        }
-        return null;
     }
     
     public void setProjektListe(List<Projekt> projektListe) {

@@ -6,13 +6,16 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.persistence.CascadeType;
 
 /**
  * Created by JanKa on 12.10.2015.
@@ -21,19 +24,19 @@ import javax.persistence.TableGenerator;
 @Table(name = "FEHLER")
 public class Fehler {
 
-	@TableGenerator(name = "proGen", table = "ID_GEN", pkColumnName = "GEN_KEY", valueColumnName = "GEN_VALUE", pkColumnValue = "FEHLER_ID", allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "proGen")
+	@TableGenerator(name = "bugGen", table = "ID_GEN", pkColumnName = "GEN_KEY", valueColumnName = "GEN_VALUE", pkColumnValue = "FEHLER_ID", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "bugGen")
 	@Id
-	@Column(name ="FEHLER_ID")
-	private Long fehler_id;
+	@Column(name = "FEHLER_ID")
+	private Long fehler_Id;
 
 	@Column(name = "FENR")
 	private Long feNr;
 
-	@Column(name = "BEZEICHNUNG")
+	@Column(name = "BEZEICHNUNG", length = 64)
 	private String bezeichnung;
 
-	@Column(name = "BESCHREIBUNG")
+	@Column(name = "BESCHREIBUNG", columnDefinition="TEXT")
 	private String beschreibung;
 
 	@Column(name = "ERSTELLT")
@@ -43,11 +46,15 @@ public class Fehler {
 	private String status;
 
 	@Column(name = "PRIO")
-	private String prioritaet;
+	private int prioritaet;
 
 	@ManyToOne
 	@JoinColumn(name = "PROJEKT_PRONR", referencedColumnName = "PRONR")
 	private Projekt projekt;
+	
+	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "fehler")
+	private List<Kommentar> kommentarList = new ArrayList<Kommentar>();
+
 
 	public Long getFeNr() {
 		return feNr;
@@ -89,11 +96,11 @@ public class Fehler {
 		this.status = status;
 	}
 
-	public String getPrioritaet() {
+	public int getPrioritaet() {
 		return prioritaet;
 	}
 
-	public void setPrioritaet(String prioritaet) {
+	public void setPrioritaet(int prioritaet) {
 		this.prioritaet = prioritaet;
 	}
 
@@ -105,5 +112,12 @@ public class Fehler {
 		this.projekt = projekt;
 	}
 
-	// private List<Kommentar> kommentarList = new ArrayList<Kommentar>();
+	public List<Kommentar> getKommentarList() {
+		return kommentarList;
+	}
+
+	public void setKommentarList(List<Kommentar> kommentarList) {
+		this.kommentarList = kommentarList;
+	}
+
 }

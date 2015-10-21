@@ -32,13 +32,13 @@ public class Projekt {
 		this.bezeichnung = bezeichnung;
 	}
 
-	@TableGenerator(name = "proGen", table = "ID_GEN", pkColumnName = "GEN_KEY", valueColumnName = "GEN_VALUE", pkColumnValue = "PROJEKT_ID", allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "proGen")
+	@TableGenerator(name = "bugGen", table = "ID_GEN", pkColumnName = "GEN_KEY", valueColumnName = "GEN_VALUE", pkColumnValue = "PROJEKT_ID", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "bugGen")
 	@Id
 	@Column(name = "PRONR")
 	private Long proNr;
 
-	@Column(name = "BEZEICHNUNG")
+	@Column(name = "BEZEICHNUNG", length = 64)
 	private String bezeichnung;
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "projekt")

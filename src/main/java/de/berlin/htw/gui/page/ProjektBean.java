@@ -29,7 +29,7 @@ public class ProjektBean {
     
     private Projekt projekt = new Projekt();
     
-    private List<Projekt> projektList = new ArrayList<Projekt>();
+    private List<Projekt> projektList;
     
     @PostConstruct
     private void init(){
@@ -40,8 +40,8 @@ public class ProjektBean {
         return projektList;
     }
     
-    public String showProjekt(long proNr) {
-        this.setProjekt(bugtrackerService.findByProNr(proNr));
+    public String showProjekt(Projekt projekt) {
+        this.setProjekt(projekt);
         return "/showProjekt.xhtml";
     }
     

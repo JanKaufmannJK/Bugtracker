@@ -31,7 +31,7 @@ public class AddProjektBean {
 
 	public String speichern() {
 		projektBean.getProjektList().add(projekt);
-		bs.persistProjekt(projekt);
+		bs.persistObject(projekt);
 		projekt = new Projekt();
 		return "/projektList.xhtml";
 	}

@@ -6,8 +6,6 @@ import de.berlin.htw.domain.Fehler;
 import de.berlin.htw.domain.Projekt;
 
 public interface BugtrackerService {
-	
-	public Projekt findByProNr(long proNr);
 
 	public List<Projekt> getProjektListe();
 	
@@ -15,7 +13,9 @@ public interface BugtrackerService {
 	
 	public List<Projekt> selectProjekteFromDb();
 
-	public void persistProjekt(Projekt projekt);
+	public <T> void persistObject(T entity);
 	
-	public void persistFehler(Fehler fehler);
+	 public <T> void mergeObject(T entity);
+	 
+	 public <T> void removeObject(T entity);
 }

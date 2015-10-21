@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="/META-INF/templates/projektTemplate.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	<ui:param name="title" value="BugTracker - Projekte" />
+	<ui:define name="content">
+		<h2>
+			<h:outputText value="Fehler" />
+		</h2>
+		<h:form id="form">
+			<h:link value="Kommentar hinzufuegen" outcome="/addKommentar.xhtml" />
+
+			<h:panelGrid id="fehler" columns="2" border="1"
+				cellpadding="10" cellspacing="1">
+				<f:facet name="header">
+					<h:outputText value="Bezeichnung " />
+					<h:outputText value="#{fehlerBean.fehler.bezeichnung}" />
+				</f:facet>
+
+				<h:dataTable value="#{fehlerBean.fehler.kommentarList}"
+					var="k">
+					<h:column>
+						<f:facet name="header">KommentarNummer</f:facet>
+						#{k.koNr}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Erstellt</f:facet>
+						#{k.erstellt}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Text</f:facet>
+						#{k.text}
+					</h:column>
+					                <h:column>
+					<f:facet name="header">Aktion</f:facet>
+					<h:commandLink value="editieren " action="#{editKommentarBean.showKommentar(k)}" />
+					<h:commandLink value="loeschen" action="#{editKommentarBean.removeKommentar(k)}" />
+				</h:column>
+				</h:dataTable>
+			</h:panelGrid>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>
