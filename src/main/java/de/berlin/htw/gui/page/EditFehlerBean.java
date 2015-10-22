@@ -1,19 +1,14 @@
 package de.berlin.htw.gui.page;
 
-import java.util.Date;
-
-import javax.inject.Named;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import de.berlin.htw.domain.Fehler;
-import de.berlin.htw.domain.Kommentar;
-import de.berlin.htw.domain.Projekt;
 import de.berlin.htw.service.BugtrackerService;
 
-@Named("editFehlerBean")
-@Scope("request")
+@Component
+@Scope("singleton")
 public class EditFehlerBean {
 
 	@Autowired
@@ -22,8 +17,8 @@ public class EditFehlerBean {
 	@Autowired
 	private ProjektBean projektBean;
 
-	@Autowired
-	private Fehler fehler;
+	
+	private Fehler fehler = new Fehler();
 
 	public Fehler getFehler() {
 		return fehler;

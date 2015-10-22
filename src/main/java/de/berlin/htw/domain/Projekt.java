@@ -14,14 +14,14 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Created by JanKa on 12.10.2015.
  */
 
 @Entity
 @Table(name = "PROJEKT")
-// @SequenceGenerator(name = "PROJEKT_SEQUENCE_GENERATOR", sequenceName =
-// "PROJEKT_SEQUENCE")
 public class Projekt {
 
 	public Projekt() {

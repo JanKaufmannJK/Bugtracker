@@ -3,21 +3,18 @@ package de.berlin.htw.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import org.springframework.context.ApplicationEvent;
-import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Scope;
-import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import de.berlin.htw.domain.Fehler;
 import de.berlin.htw.domain.Projekt;
 
-@Named("bugtrackerService")
+@Service
 @Scope("singleton")
 public class BugtrackerServiceImpl implements BugtrackerService {
     

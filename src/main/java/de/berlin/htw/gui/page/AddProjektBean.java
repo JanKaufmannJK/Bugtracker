@@ -1,25 +1,24 @@
 package de.berlin.htw.gui.page;
 
-import javax.inject.Named;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import de.berlin.htw.domain.Projekt;
 import de.berlin.htw.service.BugtrackerService;
 
-@Named("addProjektBean")
-@Scope("request")
+@Component
+@Scope("singleton")
 public class AddProjektBean {
 	
-    @Autowired
+	@Autowired
 	private BugtrackerService bs;
 	
-    @Autowired
+	@Autowired
 	private ProjektBean projektBean;
     
-    @Autowired
-	private Projekt projekt;
+	
+	private Projekt projekt = new Projekt();
 
 	public Projekt getProjekt() {
 		return projekt;

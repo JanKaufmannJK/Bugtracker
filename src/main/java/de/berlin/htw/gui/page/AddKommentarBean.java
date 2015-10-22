@@ -2,16 +2,15 @@ package de.berlin.htw.gui.page;
 
 import java.util.Date;
 
-import javax.inject.Named;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import de.berlin.htw.domain.Kommentar;
 import de.berlin.htw.service.BugtrackerService;
 
-@Named("addKommentarBean")
-@Scope("request")
+@Component
+@Scope("singleton")
 public class AddKommentarBean {
 
 	@Autowired
@@ -20,8 +19,8 @@ public class AddKommentarBean {
 	@Autowired
 	private FehlerBean fehlerBean;
 
-	@Autowired
-	private Kommentar kommentar;
+	
+	private Kommentar kommentar = new Kommentar();
 
 	public String speichern() {
 		Date date = new Date();

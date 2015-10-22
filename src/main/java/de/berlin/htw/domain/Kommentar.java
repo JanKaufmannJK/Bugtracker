@@ -10,6 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+
+import org.springframework.stereotype.Component;
+
 import javax.persistence.Id;
 
 /**

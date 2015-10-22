@@ -1,23 +1,21 @@
 package de.berlin.htw.gui.page;
 
-import javax.inject.Named;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import de.berlin.htw.domain.Fehler;
-import de.berlin.htw.domain.Projekt;
 import de.berlin.htw.service.BugtrackerService;
 
-@Named("fehlerBean")
+@Component
 @Scope("singleton")
 public class FehlerBean {
 	
 	@Autowired
 	private BugtrackerService bugtrackerService;
 	
-	@Autowired
-	private Fehler fehler;
+	
+	private Fehler fehler = new Fehler();
 	
 	@Autowired
 	private ProjektBean projektBean;
