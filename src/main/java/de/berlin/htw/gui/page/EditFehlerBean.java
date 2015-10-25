@@ -42,7 +42,7 @@ public class EditFehlerBean {
 	public String removeFehler(Fehler fehler){
 		projektBean.getProjekt().getFehlerList().remove(fehler);
 		bs.removeObject(fehler);		
-		return "/showProjekt";
+		return "/showProjekt.xhtml";
 	}
 
 	public ProjektBean getProjektBean() {

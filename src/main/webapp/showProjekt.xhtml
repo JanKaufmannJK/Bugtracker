@@ -2,8 +2,11 @@
 <ui:composition template="/META-INF/templates/projektTemplate.xhtml"
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
 	<ui:param name="title" value="BugTracker - Projekte" />
 	<ui:define name="content">
 		<h2>
@@ -12,46 +15,50 @@
 		<h:form id="form">
 			<h:link value="Fehler hinzufuegen" outcome="/addFehler.xhtml" />
 
-			<h:panelGrid id="projekt" columns="2" border="1" cellpadding="10"
-				cellspacing="1">
+			<p:panelGrid id="projekt" columns="2">
 				<f:facet name="header">
-					<h:outputText value="Bezeichnung " />
+					<h:outputText value="Fehlerliste zum Projekt: " />
 					<h:outputText value="#{projektBean.projekt.bezeichnung}" />
 				</f:facet>
 
-				<h:dataTable value="#{projektBean.projekt.fehlerList}" var="f">
-					<h:column>
-						<f:facet name="header">FehlerNummer</f:facet>
-                    #{f.feNr}
-                </h:column>
-					<h:column>
+				<p:dataTable value="#{projektBean.projekt.fehlerList}" var="f">
+					<p:column>
+						<f:facet name="header">Fehler-Nummer</f:facet>
+                    	#{f.feNr}
+                	</p:column>
+					<p:column>
 						<f:facet name="header">Bezeichnung</f:facet>
-                    #{f.bezeichnung}
-                </h:column>
-					<h:column>
+                    	#{f.bezeichnung}
+                	</p:column>
+					<p:column>
 						<f:facet name="header">Beschreibung</f:facet>
-                    #{f.beschreibung}
-                </h:column>
-					<h:column>
+                    	#{f.beschreibung}
+                	</p:column>
+					<p:column>
 						<f:facet name="header">Erstellt</f:facet>
-                    #{f.erstellt}
-                </h:column>
-					<h:column>
+                    	#{f.erstellt}
+                	</p:column>
+					<p:column>
 						<f:facet name="header">Status</f:facet>
-                    #{f.status}
-                </h:column>
-					<h:column>
+                    	#{f.status}
+                	</p:column>
+					<p:column>
 						<f:facet name="header">Prioritaet</f:facet>
-                    #{f.prioritaet}
-                </h:column>
-                <h:column>
-					<f:facet name="header">Aktion</f:facet>
-					<h:commandLink value="öffnen  " action="#{fehlerBean.showFehler(f)}" />
-					<h:commandLink value="editieren  " action="#{editFehlerBean.showFehler(f)}" />
-					<h:commandLink value="loeschen" action="#{editFehlerBean.removeFehler(f)}" />
-				</h:column>
-				</h:dataTable>
-			</h:panelGrid>
+                    	#{f.prioritaet}
+                	</p:column>
+                	<p:column>
+						<f:facet name="header">Aktion</f:facet>
+						<p:panelGrid id="action" columns="3">
+							<p:commandButton action="#{fehlerBean.showFehler(f)}" id="oeffnen" icon="ui-icon-folder-open" title="oeffnen"/>
+							<p:commandButton action="#{editFehlerBean.showFehler(f)}" id="bearbeiten" icon="ui-icon-pencil" title="bearbeiten"/>
+							<p:commandButton action="#{editFehlerBean.removeFehler(f)}" id="loeschen" icon="ui-icon-trash" title="loeschen"/>
+						</p:panelGrid>
+					</p:column>
+					<f:facet name="footer">
+						In Summe existieren #{fn:length(projektBean.projekt.fehlerList)} Fehler.
+					</f:facet>
+				</p:dataTable>
+			</p:panelGrid>
 
 		</h:form>
 	</ui:define>

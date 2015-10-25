@@ -3,7 +3,8 @@
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 	<ui:param name="title" value="BugTracker - Projekte" />
 	<ui:define name="content">
 		<h2>
@@ -11,24 +12,24 @@
 		</h2>
 		<h:form id="form">
 
-			<h:link value="Projekt hinzufuegen" outcome="/addProjekt.xhtml" />
+			<p:link value="Projekt hinzufuegen" outcome="/addProjekt.xhtml" />
 
-			<h:dataTable value="#{projektBean.projektList}" var="p" border="1" cellpadding="10"
+			<p:dataTable value="#{projektBean.projektList}" var="p" border="1" cellpadding="10"
 				cellspacing="1">
-				<h:column>
+				<p:column>
 					<f:facet name="header">Projektnummer</f:facet>
                     #{p.proNr}
-                </h:column>
-				<h:column>
+                </p:column>
+				<p:column>
 					<f:facet name="header">Bezeichnung</f:facet>
                     #{p.bezeichnung}
-                </h:column>
+                </p:column>
 
-				<h:column>
+				<p:column>
 					<f:facet name="header">Aktion</f:facet>
-					<h:commandLink value="öffnen" action="#{projektBean.showProjekt(p)}" />
-				</h:column>
-			</h:dataTable>
+					<p:commandLink value="öffnen" action="#{projektBean.showProjekt(p)}" />
+				</p:column>
+			</p:dataTable>
 		</h:form>
 	</ui:define>
 </ui:composition>

@@ -3,7 +3,8 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
 
     <ui:param name="title" value="BugTracker - Projekte"/>
 
@@ -12,14 +13,14 @@
 
 
         <h:form id="form">
-            <h:panelGrid id="projekt" columns="1">
-                <h:outputLabel for="bezeichnung" value="Bezeichnung"/>
-                <h:inputText id="bezeichnung" required="true" maxlength="64"
+            <p:panelGrid id="projekt" columns="2">
+                <p:outputLabel for="bezeichnung" value="Bezeichnung"/>
+                <p:inputText id="bezeichnung" required="true" maxlength="64"
                              value="#{addProjektBean.projekt.bezeichnung}"/>
-            </h:panelGrid>
-            <h:commandButton id="save" action="#{addProjektBean.speichern}" value="Speichern"/>
+            </p:panelGrid>
+            <p:commandButton id="save" action="#{addProjektBean.speichern}" value="Speichern" icon="ui-icon-disk" />
  
-            <h:commandButton id="cancel" action="/projektList.xhtml" value="Abbrechen" immediate="true" />
+            <p:commandButton id="cancel" action="/projektList.xhtml" value="Abbrechen" immediate="true" icon="ui-icon-close"/>
         </h:form>
     </ui:define>
 

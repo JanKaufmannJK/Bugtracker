@@ -4,7 +4,8 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui">
 
 	<ui:param name="title" value="BugTracker - Projekte" />
 
@@ -15,21 +16,21 @@
 
 
 		<h:form id="form">
-			<h:panelGrid id="kommentar" columns="2" border="1" cellpadding="10"
+			<p:panelGrid id="kommentar" columns="2" border="1" cellpadding="10"
 				cellspacing="1">
 				<f:facet name="header">
 					<h:outputText value="Kommentarnummer " />
 					<h:outputText value="TODO" />
 				</f:facet>
-				<h:outputLabel for="text" value="Text" />
-				<h:inputText required="true" maxlength="2000" id="text" 
+				<p:outputLabel for="text" value="Text" />
+				<p:inputText required="true" maxlength="2000" id="text"
 					value="#{editKommentarBean.kommentar.text}" />
-			</h:panelGrid>
-			<h:commandButton id="save" action="#{editKommentarBean.aendern}"
-				value="Speichern" />
+			</p:panelGrid>
+			<p:commandButton id="save" action="#{editKommentarBean.aendern}"
+				value="Speichern" icon="ui-icon-disk" />
 
-			<h:commandButton id="cancel" action="/showFehler.xhtml"
-				value="Abbrechen" immediate="true" />
+			<p:commandButton id="cancel" action="/showFehler.xhtml"
+				value="Abbrechen" immediate="true" icon="ui-icon-close" />
 		</h:form>
 	</ui:define>
 
