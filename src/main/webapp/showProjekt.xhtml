@@ -21,7 +21,7 @@
 					<h:outputText value="#{projektBean.projekt.bezeichnung}" />
 				</f:facet>
 
-				<p:dataTable value="#{projektBean.projekt.fehlerList}" var="f">
+				<p:dataTable value="#{projektBean.projekt.fehlerList}" var="f" resizableColumns="true">
 					<p:column>
 						<f:facet name="header">Fehler-Nummer</f:facet>
                     	#{f.feNr}
@@ -49,9 +49,9 @@
                 	<p:column>
 						<f:facet name="header">Aktion</f:facet>
 						<p:panelGrid id="action" columns="3">
-							<p:commandButton action="#{fehlerBean.showFehler(f)}" id="oeffnen" icon="ui-icon-folder-open" title="oeffnen"/>
+							<p:commandButton action="#{fehlerBean.showFehler(f)}" id="oeffnen" icon="ui-icon-folder-open" title="oeffnen" />
 							<p:commandButton action="#{editFehlerBean.showFehler(f)}" id="bearbeiten" icon="ui-icon-pencil" title="bearbeiten"/>
-							<p:commandButton action="#{editFehlerBean.removeFehler(f)}" id="loeschen" icon="ui-icon-trash" title="loeschen"/>
+							<p:commandButton action="#{editFehlerBean.removeFehler(f)}" id="loeschen" icon="ui-icon-trash" title="loeschen" update="@form"/>
 						</p:panelGrid>
 					</p:column>
 					<f:facet name="footer">
