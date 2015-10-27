@@ -30,14 +30,20 @@
 				<p:outputLabel for="prioritaet" value="Prioritaet" />
 				<p:inputText required="true" id="prioritaet" maxlength="1"
 					value="#{editFehlerBean.fehler.prioritaet}" />
-				<p:outputLabel for="status" value="Status" />
-				<p:inputText required="true" id="status" maxlength="1" value="#{editFehlerBean.fehler.status}" />
+				<p:outputLabel value="Status" />
+				<p:selectOneMenu id="status" value="#{editFehlerBean.fehler.status}"
+					style="width:150px">
+					<f:selectItem  itemLabel="#{editFehlerBean.fehler.status}"/>
+				<f:selectItems value="#{editFehlerBean.status.nachfolger}" />
+				</p:selectOneMenu>
+				<!-- 				<p:outputLabel for="status" value="Status" /> -->
+				<!-- 				<p:inputText required="true" id="status" maxlength="1" value="#{editFehlerBean.fehler.status}" /> -->
 			</p:panelGrid>
 			<p:commandButton id="save" action="#{editFehlerBean.aendern}"
 				value="Speichern" icon="ui-icon-disk" />
 
 			<p:commandButton id="cancel" action="/showProjekt.xhtml"
-				value="Abbrechen" immediate="true"  icon="ui-icon-close" />
+				value="Abbrechen" immediate="true" icon="ui-icon-close" />
 		</h:form>
 	</ui:define>
 

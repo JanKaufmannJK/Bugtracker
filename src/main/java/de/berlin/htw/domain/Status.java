@@ -23,8 +23,4 @@ public class Status {
     @Column(name = "BEZEICHNUNG", length = 64)
     private String bezeichnung;
 
-    /*
-    private List vorgaenger = new ArrayList();
-    private List nachfolger = new ArrayList();
-    */
 }

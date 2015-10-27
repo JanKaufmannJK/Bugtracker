@@ -26,8 +26,11 @@
 				<p:outputLabel for="prioritaet" value="Prioritaet" />
 				<p:inputText required="true" id="prioritaet" maxlength="1"
 					value="#{addFehlerBean.fehler.prioritaet}" />
-				<p:outputLabel for="status" value="Status" />
-				<p:inputText required="true" id="status" maxlength="1" value="#{addFehlerBean.fehler.status}" />
+				 <p:selectOneMenu id="status" value="#{addFehlerBean.fehler.status}" style="width:150px">
+                <f:selectItem itemLabel="Waiting for Triage" noSelectionOption="false" itemValue="WaitingForTriage"  />
+            </p:selectOneMenu>
+<!-- 				<p:outputLabel for="status" value="Status" /> -->
+<!-- 				<p:inputText required="true" id="status" maxlength="1" value="#{addFehlerBean.fehler.status}" /> -->
 			</p:panelGrid>
 
 			<p:commandButton id="save" action="#{addFehlerBean.speichern}"
