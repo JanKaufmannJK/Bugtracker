@@ -33,18 +33,8 @@ public class EditFehlerBean {
     
     private Map<String, Status> statusMap = new HashMap<String, Status>();
     
-    @PostConstruct
-    public void init() {
-        statusMap.put("WaitingForTriage", new WaitingForTriage());
-        statusMap.put("Resolved", new Resolved());
-        statusMap.put("Reopened", new Reopened());
-        statusMap.put("InProgress", new InProgress());
-        statusMap.put("Closed", new Closed());
-    }
-    
     public String showFehler(Fehler fehler) {
         this.setFehler(fehler);
-        this.setStatus(statusMap.get(fehler.getStatus()));
         return "/editFehler.xhtml";
     }
     

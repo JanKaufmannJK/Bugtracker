@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import de.berlin.htw.domain.Projekt;
+import de.berlin.htw.domain.Status;
 import de.berlin.htw.service.BugtrackerService;
 
 /**
@@ -27,10 +28,13 @@ public class ProjektBean {
     
     private List<Projekt> projektList;
     
+    private List<Status> statusList;
+    
     @PostConstruct
     private void init(){
         projektList = bugtrackerService.selectProjekteFromDb();
-    }
+        statusList = bugtrackerService.selectAllStati();
+        } 
     
     public List<Projekt> getProjektList() {
         return projektList;
@@ -55,5 +59,13 @@ public class ProjektBean {
 
     public void setBugtrackerService(BugtrackerService bugtrackerService) {
         this.bugtrackerService = bugtrackerService;
+    }
+
+    public List<Status> getStatusList() {
+        return statusList;
+    }
+
+    public void setStatusList(List<Status> statusList) {
+        this.statusList = statusList;
     }
 }

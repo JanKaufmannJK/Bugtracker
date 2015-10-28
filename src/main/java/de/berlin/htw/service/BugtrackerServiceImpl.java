@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.springframework.context.annotation.Scope;
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import de.berlin.htw.domain.Fehler;
 import de.berlin.htw.domain.Projekt;
+import de.berlin.htw.domain.Status;
 
 @Service
 @Scope("singleton")
@@ -25,6 +27,20 @@ public class BugtrackerServiceImpl implements BugtrackerService {
     
     public EntityManager getEm() {
         return em;
+    }
+    
+    @Transactional
+    public Status selectStatus(String bez){
+        TypedQuery<Status> query = em.createQuery("SELECT c FROM Status c WHERE BEZEICHNUNG='"+bez+"'", Status.class);
+        Status status = query.getSingleResult();
+        return status;
+    }
+    
+    @Transactional
+    public List<Status> selectAllStati(){
+        TypedQuery<Status> query = em.createQuery("SELECT c FROM Status c", Status.class);
+        List<Status> statusList = query.getResultList();
+        return statusList;
     }
     
     @Transactional

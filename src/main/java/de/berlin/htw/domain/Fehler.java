@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -42,8 +43,9 @@ public class Fehler {
 	@Column(name = "ERSTELLT")
 	private Date erstellt;
 
-	@Column(name = "STATUS")
-	private String status;
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = "STANR")
+	private Status status;
 
 	@Column(name = "PRIO")
 	private int prioritaet;
@@ -88,11 +90,11 @@ public class Fehler {
 		this.erstellt = erstellt;
 	}
 
-	public String getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 
