@@ -30,8 +30,15 @@ public class BugtrackerServiceImpl implements BugtrackerService {
     }
     
     @Transactional
+    public Object findByStaNr(long staNr){
+    	TypedQuery<Status> query = em.createQuery("SELECT c FROM Status c WHERE c.staNr = :staNr ", Status.class);
+        query.setParameter("staNr", staNr);
+        return query.getSingleResult();
+    }
+    
+    @Transactional
     public Status selectStatus(String bez){
-        TypedQuery<Status> query = em.createQuery("SELECT c FROM Status c WHERE BEZEICHNUNG='"+bez+"'", Status.class);
+        TypedQuery<Status> query = em.createQuery("SELECT c FROM Status c WHERE c.bezeichnung='"+bez+"'", Status.class);
         Status status = query.getSingleResult();
         return status;
     }

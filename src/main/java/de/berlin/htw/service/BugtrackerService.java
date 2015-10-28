@@ -18,4 +18,6 @@ public interface BugtrackerService {
     public Status selectStatus(String bez);
     
     public List<Status> selectAllStati();
+    
+    public Object findByStaNr(long staNr);
 }

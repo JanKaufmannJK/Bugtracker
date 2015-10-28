@@ -16,6 +16,7 @@
 
 
 		<h:form id="form">
+		<p:messages id="errorMessages" style="color:red;margin:8px;" />
 			<p:panelGrid id="fehler" columns="2">
 				<f:facet name="header">
 					<h:outputText value="Fehlernummer " />
@@ -31,14 +32,13 @@
 				<p:inputText required="true" id="prioritaet" maxlength="1"
 					value="#{editFehlerBean.fehler.prioritaet}" />
 				<p:outputLabel value="Status" />
-				<p:selectOneMenu id="status" value="#{editFehlerBean.fehler.status}"
-					style="width:150px">
-					<f:selectItem itemLabel="#{editFehlerBean.fehler.status.bezeichnung}" itemValue ="#{editFehlerBean.fehler.status" />
-					<f:selectItems value="#{editFehlerBean.fehler.status.statusInfo}" />
+				<p:selectOneMenu id="status" value="#{editFehlerBean.fehler.status}" converter="#{statusListConverter}" style="width:150px">
+					<f:selectItem itemLabel="#{editFehlerBean.fehler.status.bezeichnung}" itemValue ="#{editFehlerBean.fehler.status}" />
+					<f:selectItems value="#{editFehlerBean.folgeStati}" var="stati" itemLabel="#{stati.bezeichnung}" itemValue="#{stati}" />		
 				</p:selectOneMenu>
 			</p:panelGrid>
 			<p:commandButton id="save" action="#{editFehlerBean.aendern}"
-				value="Speichern" icon="ui-icon-disk" />
+				value="Speichern" icon="ui-icon-disk" update = "errorMessages" />
 
 			<p:commandButton id="cancel" action="/showProjekt.xhtml"
 				value="Abbrechen" immediate="true" icon="ui-icon-close" />
