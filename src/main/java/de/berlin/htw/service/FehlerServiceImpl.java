@@ -5,20 +5,17 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import de.berlin.htw.domain.Fehler;
 import de.berlin.htw.domain.Projekt;
-import de.berlin.htw.domain.Status;
 
 @Service
 @Scope("singleton")
-public class BugtrackerServiceImpl implements BugtrackerService {
+public class FehlerServiceImpl implements FehlerService {
     
     @PersistenceContext
     private EntityManager em;
@@ -27,27 +24,6 @@ public class BugtrackerServiceImpl implements BugtrackerService {
     
     public EntityManager getEm() {
         return em;
-    }
-    
-    @Transactional
-    public Object findByStaNr(long staNr){
-    	TypedQuery<Status> query = em.createQuery("SELECT c FROM Status c WHERE c.staNr = :staNr ", Status.class);
-        query.setParameter("staNr", staNr);
-        return query.getSingleResult();
-    }
-    
-    @Transactional
-    public Status selectStatus(String bez){
-        TypedQuery<Status> query = em.createQuery("SELECT c FROM Status c WHERE c.bezeichnung='"+bez+"'", Status.class);
-        Status status = query.getSingleResult();
-        return status;
-    }
-    
-    @Transactional
-    public List<Status> selectAllStati(){
-        TypedQuery<Status> query = em.createQuery("SELECT c FROM Status c", Status.class);
-        List<Status> statusList = query.getResultList();
-        return statusList;
     }
     
     @Transactional
@@ -64,11 +40,6 @@ public class BugtrackerServiceImpl implements BugtrackerService {
     @Transactional
     public <T> void mergeObject(T entity) {
         em.merge(entity);
-    }
-    
-    @Transactional
-    public void persistFehler(Fehler fehler) {
-        em.persist(fehler);
     }
     
     @Transactional

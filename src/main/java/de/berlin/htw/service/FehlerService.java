@@ -3,9 +3,8 @@ package de.berlin.htw.service;
 import java.util.List;
 
 import de.berlin.htw.domain.Projekt;
-import de.berlin.htw.domain.Status;
 
-public interface BugtrackerService {
+public interface FehlerService {
     
     public List<Projekt> selectProjekteFromDb();
     
@@ -14,10 +13,5 @@ public interface BugtrackerService {
     public <T> void mergeObject(T entity);
     
     public <T> void removeObject(T entity);
-    
-    public Status selectStatus(String bez);
-    
-    public List<Status> selectAllStati();
-    
-    public Object findByStaNr(long staNr);
+
 }

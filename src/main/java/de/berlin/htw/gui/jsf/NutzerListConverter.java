@@ -7,16 +7,18 @@ import javax.faces.convert.Converter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import de.berlin.htw.domain.Nutzer;
 import de.berlin.htw.domain.Status;
+import de.berlin.htw.service.NutzerService;
 import de.berlin.htw.service.StatusService;
 
-@Component("statusListConverter")
-public class StatusListConverter implements Converter {
+@Component("nutzerListConverter")
+public class NutzerListConverter implements Converter {
 
     @Autowired
-    private StatusService statusService;
+    private NutzerService nutzerService;
 
-    public StatusListConverter() {
+    public NutzerListConverter() {
     }
 
     @Override
@@ -24,8 +26,8 @@ public class StatusListConverter implements Converter {
         if (value.isEmpty()) {
             return null;
         }
-        Long staNr = Long.parseLong(value);
-        return statusService.findByStaNr(staNr);
+        Long nuNr = Long.parseLong(value);
+        return nutzerService.findByNuNr(nuNr);
     }
 
     @Override
@@ -33,7 +35,7 @@ public class StatusListConverter implements Converter {
         if (value == null || value.toString().isEmpty()) {
             return "";
         }
-        return String.valueOf(((Status) value).getStaNr());
+        return String.valueOf(((Nutzer) value).getNuNr());
        
     }
 }

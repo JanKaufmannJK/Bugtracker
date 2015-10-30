@@ -1,18 +1,19 @@
-package de.berlin.htw.gui.page;
+package de.berlin.htw.gui.page.Fehler;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import de.berlin.htw.domain.Fehler;
-import de.berlin.htw.service.BugtrackerService;
+import de.berlin.htw.gui.page.Projekt.ProjektBean;
+import de.berlin.htw.service.FehlerService;
 
 @Component
 @Scope("singleton")
 public class FehlerBean {
 	
 	@Autowired
-	private BugtrackerService bugtrackerService;
+	private FehlerService fehlerService;
 	
 	
 	private Fehler fehler = new Fehler();
@@ -26,12 +27,12 @@ public class FehlerBean {
 		return "/showFehler.xhtml";
 	}
 
-	public BugtrackerService getBugtrackerService() {
-		return bugtrackerService;
+	public FehlerService getBugtrackerService() {
+		return fehlerService;
 	}
 
-	public void setBugtrackerService(BugtrackerService bugtrackerService) {
-		this.bugtrackerService = bugtrackerService;
+	public void setBugtrackerService(FehlerService bugtrackerService) {
+		this.fehlerService = bugtrackerService;
 	}
 
 	public Fehler getFehler() {

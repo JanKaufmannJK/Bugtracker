@@ -1,18 +1,18 @@
-package de.berlin.htw.gui.page;
+package de.berlin.htw.gui.page.Projekt;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import de.berlin.htw.domain.Projekt;
-import de.berlin.htw.service.BugtrackerService;
+import de.berlin.htw.service.FehlerService;
 
 @Component
 @Scope("singleton")
 public class AddProjektBean {
 	
 	@Autowired
-	private BugtrackerService bs;
+	private FehlerService fehlerService;
 	
 	@Autowired
 	private ProjektBean projektBean;
@@ -30,7 +30,7 @@ public class AddProjektBean {
 
 	public String speichern() {
 		projektBean.getProjektList().add(projekt);
-		bs.persistObject(projekt);
+		fehlerService.persistObject(projekt);
 		projekt = new Projekt();
 		return "/projektList.xhtml";
 	}

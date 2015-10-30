@@ -1,11 +1,19 @@
 package de.berlin.htw.domain;
 
-import javax.persistence.*;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 /**
  * Created by JanKa on 26.10.2015.
@@ -27,7 +35,7 @@ public class Status {
 	@ElementCollection(fetch = FetchType.EAGER)
 	@JoinTable(name = "STATUS_NACHFOLGER", joinColumns = @JoinColumn(name = "STANR") )
 	@Column(name = "NACHFOLGER")
-	private List<Integer> statusInfo = new ArrayList<Integer>();
+	private List<Long> statusInfo = new ArrayList<Long>();
 
 	@Override
 	public int hashCode() {
@@ -48,11 +56,11 @@ public class Status {
 		return true;
 	}
 
-	public List<Integer> getStatusInfo() {
+	public List<Long> getStatusInfo() {
 		return statusInfo;
 	}
 
-	public void setStatusInfo(List<Integer> statusInfo) {
+	public void setStatusInfo(List<Long> statusInfo) {
 		this.statusInfo = statusInfo;
 	}
 

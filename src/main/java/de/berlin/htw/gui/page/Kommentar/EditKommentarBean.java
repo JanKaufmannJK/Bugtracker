@@ -1,18 +1,19 @@
-package de.berlin.htw.gui.page;
+package de.berlin.htw.gui.page.Kommentar;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import de.berlin.htw.domain.Kommentar;
-import de.berlin.htw.service.BugtrackerService;
+import de.berlin.htw.gui.page.Fehler.FehlerBean;
+import de.berlin.htw.service.FehlerService;
 
 @Component
 @Scope("singleton")
 public class EditKommentarBean {
 
 	@Autowired
-	private BugtrackerService bs;
+	private FehlerService fehlerService;
 
 	@Autowired
 	private FehlerBean fehlerBean;
@@ -27,12 +28,12 @@ public class EditKommentarBean {
 	
 	public String removeKommentar(Kommentar kommentar){
 		fehlerBean.getFehler().getKommentarList().remove(kommentar);
-		bs.removeObject(kommentar);		
+		fehlerService.removeObject(kommentar);		
 		return "/showFehler";
 	}
 	
 	public String aendern(){
-		bs.mergeObject(kommentar);
+	    fehlerService.mergeObject(kommentar);
 		kommentar = new Kommentar();
 		return "/showFehler.xhtml";
 	}

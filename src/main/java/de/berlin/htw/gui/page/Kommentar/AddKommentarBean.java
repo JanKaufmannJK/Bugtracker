@@ -1,4 +1,4 @@
-package de.berlin.htw.gui.page;
+package de.berlin.htw.gui.page.Kommentar;
 
 import java.util.Date;
 
@@ -7,14 +7,15 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import de.berlin.htw.domain.Kommentar;
-import de.berlin.htw.service.BugtrackerService;
+import de.berlin.htw.gui.page.Fehler.FehlerBean;
+import de.berlin.htw.service.FehlerService;
 
 @Component
 @Scope("singleton")
 public class AddKommentarBean {
 
 	@Autowired
-	private BugtrackerService bs;
+	private FehlerService fehlerService;
 
 	@Autowired
 	private FehlerBean fehlerBean;
@@ -33,7 +34,7 @@ public class AddKommentarBean {
 			kommentar.setKoNr((long) (fehlerBean.getFehler().getKommentarList().get(lastKoNr).getKoNr() + 1));
 		}
 		fehlerBean.getFehler().getKommentarList().add(kommentar);
-		bs.persistObject(kommentar);
+		fehlerService.persistObject(kommentar);
 		kommentar = new Kommentar();
 
 		return "/showFehler.xhtml";

@@ -10,55 +10,59 @@
 	<ui:param name="title" value="BugTracker - Projekte" />
 	<ui:define name="content">
 		<h2>
-			<h:outputText value="Projekt" />
+			<h:outputText
+				value="Fehlerliste zum Projekt: #{projektBean.projekt.bezeichnung}" />
 		</h2>
+
+
 		<h:form id="form">
-			<h:link value="Fehler hinzufuegen" outcome="/addFehler.xhtml" />
+			<p:commandButton value="Fehler hinzufügen " id="newFehler"
+				icon="icon-plus-2" action="/addFehler.xhtml" />
 
-			<p:panelGrid id="projekt" columns="2">
+			<p:dataTable value="#{projektBean.projekt.fehlerList}" var="f"
+				resizableColumns="true" >
+
 				<f:facet name="header">
-					<h:outputText value="Fehlerliste zum Projekt: " />
-					<h:outputText value="#{projektBean.projekt.bezeichnung}" />
+					Expand rows to see detailed information				
 				</f:facet>
+				<p:column style="width:16px">
+					<p:rowToggler />
+				</p:column>
 
-				<p:dataTable value="#{projektBean.projekt.fehlerList}" var="f" resizableColumns="true">
-					<p:column>
-						<f:facet name="header">Fehler-Nummer</f:facet>
-                    	#{f.feNr}
-                	</p:column>
-					<p:column>
-						<f:facet name="header">Bezeichnung</f:facet>
-                    	#{f.bezeichnung}
-                	</p:column>
-					<p:column>
-						<f:facet name="header">Beschreibung</f:facet>
-                    	#{f.beschreibung}
-                	</p:column>
-					<p:column>
-						<f:facet name="header">Erstellt</f:facet>
-                    	#{f.erstellt}
-                	</p:column>
-					<p:column>
-						<f:facet name="header">Status</f:facet>
-                    	#{f.status.bezeichnung}
-                	</p:column>
-					<p:column>
-						<f:facet name="header">Prioritaet</f:facet>
-                    	#{f.prioritaet}
-                	</p:column>
-                	<p:column>
-						<f:facet name="header">Aktion</f:facet>
-						<p:panelGrid id="action" columns="3">
-							<p:commandButton action="#{fehlerBean.showFehler(f)}" id="oeffnen" icon="ui-icon-folder-open" title="oeffnen" />
-							<p:commandButton action="#{editFehlerBean.showFehler(f)}" id="bearbeiten" icon="ui-icon-pencil" title="bearbeiten"/>
-							<p:commandButton action="#{editFehlerBean.removeFehler(f)}" id="loeschen" icon="ui-icon-trash" title="loeschen" update="@form"/>
-						</p:panelGrid>
-					</p:column>
-					<f:facet name="footer">
+				<p:column headerText="Bezeichnung">
+					<h:outputText value="#{f.bezeichnung}" />
+				</p:column>
+				<p:column headerText="Erstellt">
+					<h:outputText value="#{f.erstellt}" />
+				</p:column>
+				<p:column headerText="Status">
+					<h:outputText value="#{f.status.bezeichnung}" />
+				</p:column>
+				<p:column headerText="Prioritaet">
+					<h:outputText value="#{f.prioritaet}" />
+				</p:column>
+				<p:column headerText="Aktion">
+
+					<p:commandButton action="#{fehlerBean.showFehler(f)}" id="oeffnen"
+						icon="ui-icon-folder-open" title="oeffnen" />
+					<p:commandButton action="#{editFehlerBean.showFehler(f)}"
+						id="bearbeiten" icon="ui-icon-pencil" title="bearbeiten" />
+					<p:commandButton action="#{editFehlerBean.removeFehler(f)}"
+						id="loeschen" icon="ui-icon-trash" title="loeschen" update="@form" />
+				</p:column>
+
+				<p:rowExpansion>
+					<p:outputPanel deferred="true">
+						<h3>Beschreibung</h3>
+						<p>#{f.beschreibung}</p>
+					</p:outputPanel>
+				</p:rowExpansion>
+
+				<f:facet name="footer">
 						In Summe existieren #{fn:length(projektBean.projekt.fehlerList)} Fehler.
 					</f:facet>
-				</p:dataTable>
-			</p:panelGrid>
+			</p:dataTable>
+
 
 		</h:form>
 	</ui:define>

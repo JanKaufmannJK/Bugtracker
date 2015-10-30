@@ -1,4 +1,4 @@
-package de.berlin.htw.gui.page;
+package de.berlin.htw.gui.page.Projekt;
 
 import java.util.Date;
 
@@ -8,17 +8,21 @@ import org.springframework.stereotype.Component;
 
 import de.berlin.htw.domain.Fehler;
 import de.berlin.htw.domain.Status;
-import de.berlin.htw.service.BugtrackerService;
+import de.berlin.htw.gui.page.Status.StatusBean;
+import de.berlin.htw.service.FehlerService;
 
 @Component
 @Scope("singleton")
 public class AddFehlerBean {
     
     @Autowired
-    private BugtrackerService bs;
+    private FehlerService fehlerService;
     
     @Autowired
     private ProjektBean projektBean;
+    
+    @Autowired
+    private StatusBean statusBean;
     
     private Fehler fehler = new Fehler();
     
@@ -35,7 +39,7 @@ public class AddFehlerBean {
     public String speichern() {
         
         Status status = null;
-        for (Status s : projektBean.getStatusList()) {
+        for (Status s : statusBean.getStatusList()) {
             if (s.getBezeichnung().equals(statusBez)) {
                 status = s;
             }
@@ -53,7 +57,7 @@ public class AddFehlerBean {
             fehler.setFeNr(projektBean.getProjekt().getFehlerList().get(lastFeNr).getFeNr() + 1);
         }
         projektBean.getProjekt().getFehlerList().add(fehler);
-        bs.persistObject(fehler);
+        fehlerService.persistObject(fehler);
         fehler = new Fehler();
         
         return "/showProjekt.xhtml";
