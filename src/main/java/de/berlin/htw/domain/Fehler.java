@@ -44,6 +44,14 @@ public class Fehler {
 	private Date erstellt;
 
 	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = "ERSTELLER")
+	private Nutzer ersteller;	
+	
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = "BEARBEITER")
+	private Nutzer bearbeiter;	
+
+	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "STANR")
 	private Status status;
 
@@ -122,4 +130,19 @@ public class Fehler {
 		this.kommentarList = kommentarList;
 	}
 
+	public Nutzer getErsteller() {
+		return ersteller;
+	}
+
+	public void setErsteller(Nutzer ersteller) {
+		this.ersteller = ersteller;
+	}
+
+	public Nutzer getBearbeiter() {
+		return bearbeiter;
+	}
+
+	public void setBearbeiter(Nutzer bearbeiter) {
+		this.bearbeiter = bearbeiter;
+	}
 }

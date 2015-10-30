@@ -66,6 +66,7 @@ public class AddFehlerBean {
 
 		fehler.setStatus(status);
 		Date date = new Date();
+		fehler.setErsteller(projektBean.getUserBean().getNutzer());
 		fehler.setErstellt(date);
 		fehler.setProjekt(projektBean.getProjekt());
 

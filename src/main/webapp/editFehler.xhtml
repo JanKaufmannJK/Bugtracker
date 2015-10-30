@@ -20,17 +20,28 @@
 				<p:outputLabel value="Bezeichnung" />
 				<p:inputText required="true" maxlength="64" id="bezeichnung"
 					value="#{editFehlerBean.fehler.bezeichnung}" />
+					
 				<p:outputLabel for="beschreibung" value="Beschreibung" />
-				<p:inputText required="true" id="beschreibung" maxlength="2000"
-					value="#{editFehlerBean.fehler.beschreibung}" />
+				<p:inputTextarea id="beschreibung" rows="5" cols="30"
+					counter="display" maxlength="2000"
+					counterTemplate="{0} characters remaining." autoResize="false"
+					value="#{editFehlerBean.fehler.beschreibung}" required="true" />
+				<p></p>
+				<h:outputText id="display" />					
+					
+					
 				<p:outputLabel for="prioritaet" value="Prioritaet" />
 				<p:inputText required="true" id="prioritaet" maxlength="1"
 					value="#{editFehlerBean.fehler.prioritaet}" />
+					
 				<p:outputLabel value="Status" />
 				<p:selectOneMenu id="status" value="#{editFehlerBean.status}" converter="#{statusListConverter}" style="width:150px">
 					<f:selectItem itemLabel="#{editFehlerBean.fehler.status.bezeichnung}" itemValue ="#{editFehlerBean.fehler.status}" />
 					<f:selectItems value="#{editFehlerBean.folgeStati}" var="stati" itemLabel="#{stati.bezeichnung}" itemValue="#{stati}" />		
 				</p:selectOneMenu>
+				
+				<p:outputLabel value="Bearbeiter" />
+				<p:outputLabel value="TODO" />
 			</p:panelGrid>
 			<p:commandButton id="save" action="#{editFehlerBean.aendern}"
 				value="Speichern" icon="ui-icon-disk" update = "errorMessages" />

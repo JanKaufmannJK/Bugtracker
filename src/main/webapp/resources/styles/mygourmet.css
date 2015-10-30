@@ -76,3 +76,21 @@ body {
 .ui-datatable-scrollable table {
     table-layout: fixed !important;
 }
+
+.noborderpanelgrid{
+    width:100%;
+}
+.noborderpanelgrid>tbody>tr{
+    border: none !important;
+}
+.noborderpanelgrid>tbody>tr>td{
+    border: none !important;
+}
+
+.preformatted {
+    white-space: pre-wrap;
+}
+
+.fehlerlabel {
+	font-weight:bold;
+}

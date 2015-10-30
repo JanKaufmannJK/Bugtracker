@@ -25,6 +25,7 @@ public class AddKommentarBean {
 
 	public String speichern() {
 		Date date = new Date();
+		kommentar.setNutzer(fehlerBean.getProjektBean().getUserBean().getNutzer());
 		kommentar.setErstellt(date);
 		kommentar.setFehler(fehlerBean.getFehler());
 		if (fehlerBean.getFehler().getKommentarList().isEmpty()) {

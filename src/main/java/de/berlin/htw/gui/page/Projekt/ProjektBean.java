@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import de.berlin.htw.domain.Projekt;
+import de.berlin.htw.gui.page.User.UserBean;
 import de.berlin.htw.service.FehlerService;
 
 /**
@@ -21,6 +22,9 @@ public class ProjektBean {
     
     @Autowired
     private FehlerService fehlerService;
+
+	@Autowired
+	private UserBean userBean;    
     
     private Projekt projekt = new Projekt();
     
@@ -55,4 +59,12 @@ public class ProjektBean {
     public void setBugtrackerService(FehlerService bugtrackerService) {
         this.fehlerService = bugtrackerService;
     }
+
+	public UserBean getUserBean() {
+		return userBean;
+	}
+
+	public void setUserBean(UserBean userBean) {
+		this.userBean = userBean;
+	}
 }

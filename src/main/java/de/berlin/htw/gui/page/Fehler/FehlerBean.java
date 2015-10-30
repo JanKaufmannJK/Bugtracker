@@ -21,7 +21,6 @@ public class FehlerBean {
 	@Autowired
 	private ProjektBean projektBean;
 	
-	
 	public String showFehler(Fehler fehler){
 		this.setFehler(fehler);
 		return "/showFehler.xhtml";
