@@ -12,7 +12,10 @@
 		</h2>
 		<h:form id="form">
 
-			<p:link value="Projekt hinzufuegen" outcome="/addProjekt.xhtml" />
+			<p:commandButton value="Projekt hinzufügen " id="newProjekt"
+							 icon="ui-icon-circle-plus" action="/addProjekt.xhtml" />
+
+			<p></p>
 
 			<p:dataTable value="#{projektBean.projektList}" var="p" border="1" cellpadding="10"
 				cellspacing="1">
@@ -27,7 +30,8 @@
 
 				<p:column>
 					<f:facet name="header">Aktion</f:facet>
-					<p:commandLink value="öffnen" action="#{projektBean.showProjekt(p)}" />
+					<p:commandButton action="#{projektBean.showProjekt(p)}" id="oeffnen"
+									 icon="ui-icon-folder-open" title="oeffnen" />
 				</p:column>
 			</p:dataTable>
 		</h:form>

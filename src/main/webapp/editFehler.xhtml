@@ -22,9 +22,9 @@
 					value="#{editFehlerBean.fehler.bezeichnung}" />
 					
 				<p:outputLabel for="beschreibung" value="Beschreibung" />
-				<p:inputTextarea id="beschreibung" rows="5" cols="30"
+				<p:inputTextarea id="beschreibung" rows="5" cols="90"
 					counter="display" maxlength="2000"
-					counterTemplate="{0} characters remaining." autoResize="false"
+					counterTemplate="{0} characters remaining." autoResize="true"
 					value="#{editFehlerBean.fehler.beschreibung}" required="true" />
 				<p></p>
 				<h:outputText id="display" />					

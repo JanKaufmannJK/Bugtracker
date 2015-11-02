@@ -17,7 +17,9 @@
 
 		<h:form id="form">
 			<p:commandButton value="Fehler hinzufügen " id="newFehler"
-				icon="icon-plus-2" action="/addFehler.xhtml" />
+				icon="ui-icon-circle-plus" action="/addFehler.xhtml" />
+
+			<p></p>
 
 			<p:dataTable value="#{projektBean.projekt.fehlerList}" var="f"
 				resizableColumns="true">
@@ -63,7 +65,8 @@
 					<p:outputPanel deferred="true" style="white-space:pre-line"
 						escape="false">
 						<h3>Beschreibung</h3>
-						<p>#{f.beschreibung}</p>
+						#{f.beschreibung}
+						<p></p>
 					</p:outputPanel>
 				</p:rowExpansion>
 

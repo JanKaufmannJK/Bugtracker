@@ -1,119 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui:composition template="/META-INF/templates/projektTemplate.xhtml"
-	xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
 
-	<ui:param name="title" value="BugTracker - Projekte" />
-	<ui:define name="content">
-		<h2>
-			<h:outputText value="Fehler" />
-		</h2>
-		<h:form id="form">
-			<p:commandButton value="Fehlerliste" id="back"
-				icon="ui-icon-circle-triangle-w" immediate="true"
-				action="/showProjekt.xhtml" />
+    <ui:param name="title" value="BugTracker - Projekte"/>
+    <ui:define name="content">
+        <h2>
+            <h:outputText value="Fehler"/>
+        </h2>
+        <h:form id="form">
+            <p:commandButton value="Fehlerliste" id="back"
+                             icon="ui-icon-circle-triangle-w" immediate="true"
+                             action="/showProjekt.xhtml"/>
 
-			<p:panelGrid id="fehler" columns="1" border="1" cellpadding="10"
-				cellspacing="1">
-				<f:facet name="header">
-					<h:outputText value="#{fehlerBean.fehler.bezeichnung}" />
-				</f:facet>
+            <p></p>
+
+            <p:panelGrid id="fehler" columns="1" border="1" cellpadding="10"
+                         cellspacing="1">
+                <f:facet name="header">
+                    <h:outputText value="#{fehlerBean.fehler.bezeichnung}"/>
+                </f:facet>
 
 
-				<p:panelGrid id="fehlerdetail" columns="2" cellpadding="0"
-					cellspacing="0" styleClass="noborderpanelgrid">
+                <p:panelGrid id="fehlerdetail" columns="2" cellpadding="0"
+                             cellspacing="0" styleClass="noborderpanelgrid">
 
-					<h:outputText value="Erstellt am: " styleClass="fehlerlabel" />
-					<h:outputText value="#{fehlerBean.fehler.erstellt}">
-						<f:convertDateTime dateStyle="short" type="both"
-							timeZone="Europe/Berlin" />
-					</h:outputText>
+                    <h:outputText value="Erstellt am: " styleClass="fehlerlabel"/>
+                    <h:outputText value="#{fehlerBean.fehler.erstellt}">
+                        <f:convertDateTime dateStyle="short" type="both"
+                                           timeZone="Europe/Berlin"/>
+                    </h:outputText>
 
-					<h:outputText value="Erstellt von: " styleClass="fehlerlabel" />
-					<h:outputText
-						value="#{fehlerBean.fehler.ersteller.vorname} #{fehlerBean.fehler.ersteller.name}" />
+                    <h:outputText value="Erstellt von: " styleClass="fehlerlabel"/>
+                    <h:outputText
+                            value="#{fehlerBean.fehler.ersteller.vorname} #{fehlerBean.fehler.ersteller.name}"/>
 
-					<h:outputText value="Status: " styleClass="fehlerlabel" />
-					<h:outputText value="#{fehlerBean.fehler.status.bezeichnung}" />
+                    <h:outputText value="Status: " styleClass="fehlerlabel"/>
+                    <h:outputText value="#{fehlerBean.fehler.status.bezeichnung}"/>
 
-					<h:outputText value="Priorität: " styleClass="fehlerlabel" />
-					<h:outputText value="#{fehlerBean.fehler.prioritaet}" />
+                    <h:outputText value="Priorität: " styleClass="fehlerlabel"/>
+                    <h:outputText value="#{fehlerBean.fehler.prioritaet}"/>
 
-					<h:outputText value="Bearbeiter: " styleClass="fehlerlabel" />
-					<h:outputText
-						value="#{fehlerBean.fehler.bearbeiter.vorname} #{fehlerBean.fehler.bearbeiter.name}" />
+                    <h:outputText value="Bearbeiter: " styleClass="fehlerlabel"/>
+                    <h:outputText
+                            value="#{fehlerBean.fehler.bearbeiter.vorname} #{fehlerBean.fehler.bearbeiter.name}"/>
 
-					<h:outputText value="Beschreibung: " styleClass="fehlerlabel" />
-					<h:outputText value="#{fehlerBean.fehler.beschreibung}"
-						style="white-space:pre-line" escape="false" />
-				</p:panelGrid>
+                    <h:outputText value="Beschreibung: " styleClass="fehlerlabel"/>
+                    <h:outputText value="#{fehlerBean.fehler.beschreibung}"
+                                  style="white-space:pre-line" escape="false"/>
+                </p:panelGrid>
 
-				<ui:repeat value="#{fehlerBean.fehler.kommentarList}" var="k">
-					<p:accordionPanel multiple="true">
-						<p:tab
-							title="#{k.nutzer.vorname} #{k.nutzer.name} am #{k.erstellt}:">
-							<p:panelGrid id="kommentar" cellpadding="0" cellspacing="0"
-								styleClass="noborderpanelgrid">
-								<p:row>
-									<p:column>
-										<h:outputText style="font-style:italic"
-											value="Kommentar #{fehlerBean.fehler.kommentarList.indexOf(k)+1} von #{fehlerBean.fehler.kommentarList.size()}" />
-									</p:column>
-									<p:column style="text-align: right">
-										<p:commandButton id="bearbeiten"
-											style="width: 20px; height:20px;" icon="ui-icon-pencil"
-											immediate="true"
-											action="#{editKommentarBean.showKommentar(k)}" />
-										<p:commandButton id="loeschen"
-											style="width: 20px; height:20px;" icon="ui-icon-trash"
-											immediate="true"
-											action="#{editKommentarBean.removeKommentar(k)}"
-											update="@form" />
-									</p:column>
-								</p:row>
-								<p:row>
-									<p:column colspan="2">
-										<p:separator />
-									</p:column>
-								</p:row>
-								<p:row>
-									<p:column colspan="2">
-										<h:outputText value="#{k.text}" style="white-space:pre-line"
-											escape="false" />
-									</p:column>
-								</p:row>
-							</p:panelGrid>
-						</p:tab>
-					</p:accordionPanel>
-				</ui:repeat>
+                <ui:repeat value="#{fehlerBean.fehler.kommentarList}" var="k">
+                    <p:accordionPanel multiple="true">
+                        <p:tab
+                                title="#{k.nutzer.vorname} #{k.nutzer.name} am #{k.erstellt}:">
+                            <p:panelGrid id="kommentar" cellpadding="0" cellspacing="0"
+                                         styleClass="noborderpanelgrid">
+                                <p:row>
+                                    <p:column>
+                                        <h:outputText style="font-style:italic"
+                                                      value="Kommentar #{fehlerBean.fehler.kommentarList.indexOf(k)+1} von #{fehlerBean.fehler.kommentarList.size()}"/>
+                                    </p:column>
+                                    <p:column style="text-align: right">
+                                        <p:commandButton id="bearbeiten"
+                                                         style="width: 20px; height:20px;" icon="ui-icon-pencil"
+                                                         immediate="true"
+                                                         action="#{editKommentarBean.showKommentar(k)}"
+                                                         title="bearbeiten"/>
+                                        <p:commandButton id="loeschen"
+                                                         style="width: 20px; height:20px;" icon="ui-icon-trash"
+                                                         immediate="true"
+                                                         action="#{editKommentarBean.removeKommentar(k)}"
+                                                         update="@form"
+                                                         title="löschen"/>
+                                    </p:column>
+                                </p:row>
+                                <p:row>
+                                    <p:column colspan="2">
+                                        <p:separator/>
+                                    </p:column>
+                                </p:row>
+                                <p:row>
+                                    <p:column colspan="2">
+                                        <h:outputText value="#{k.text}" style="white-space:pre-line"
+                                                      escape="false"/>
+                                    </p:column>
+                                </p:row>
+                            </p:panelGrid>
+                        </p:tab>
+                    </p:accordionPanel>
+                </ui:repeat>
 
-				<p:panelGrid id="kommentar" cellpadding="0" cellspacing="0"
-					styleClass="noborderpanelgrid">
-					<p:row>
-						<p:column colspan="2">
-							<p:inputTextarea id="text" rows="5" cols="100" counter="display"
-								maxlength="2000" counterTemplate="{0} characters remaining."
-								autoResize="false" placeholder="Schreibe einen Kommentar..."
-								required="true" value="#{addKommentarBean.kommentar.text}" />
-						</p:column>
-					</p:row>
-					<p:row>
-						<p:column>
-							<h:outputText id="display" />
-						</p:column>
-						<p:column style="text-align: right">
-							<p:commandButton value="Posten" id="post" icon="ui-icon-disk"
-								action="#{addKommentarBean.speichern}" update="@form" />
-						</p:column>
-					</p:row>
-				</p:panelGrid>
+                <p:panelGrid id="kommentar" cellpadding="0" cellspacing="0"
+                             styleClass="noborderpanelgrid">
+                    <p:row>
+                        <p:column colspan="2">
+                            <p:inputTextarea id="text" rows="5" cols="100" counter="display"
+                                             maxlength="2000" counterTemplate="{0} characters remaining."
+                                             autoResize="false" placeholder="Schreibe einen Kommentar..."
+                                             required="true" value="#{addKommentarBean.kommentar.text}"/>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column>
+                            <h:outputText id="display"/>
+                        </p:column>
+                        <p:column style="text-align: right">
+                            <p:commandButton value="Posten" id="post" icon="ui-icon-disk"
+                                             action="#{addKommentarBean.speichern}" update="@form"/>
+                        </p:column>
+                    </p:row>
+                </p:panelGrid>
 
-			</p:panelGrid>
+            </p:panelGrid>
 
-		</h:form>
-	</ui:define>
+        </h:form>
+    </ui:define>
 
 </ui:composition>
