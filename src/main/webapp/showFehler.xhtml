@@ -26,37 +26,45 @@
 
 
                 <p:panelGrid id="fehlerdetail" columns="2" cellpadding="0"
-                             cellspacing="0" styleClass="noborderpanelgrid">
+                             cellspacing="0" styleClass="noborderpanelgrid" columnClasses="showFehler_firstColumn, showFehler_secondColumn">
 
-                    <h:outputText value="Erstellt am: " styleClass="fehlerlabel"/>
+                    <h:outputText value="Erstellt am: " styleClass="showFehler_fehlerlabel"/>
                     <h:outputText value="#{fehlerBean.fehler.erstellt}">
                         <f:convertDateTime dateStyle="short" type="both"
                                            timeZone="Europe/Berlin"/>
                     </h:outputText>
 
-                    <h:outputText value="Erstellt von: " styleClass="fehlerlabel"/>
+                    <h:outputText value="Erstellt von: " styleClass="showFehler_fehlerlabel"/>
                     <h:outputText
                             value="#{fehlerBean.fehler.ersteller.vorname} #{fehlerBean.fehler.ersteller.name}"/>
 
-                    <h:outputText value="Status: " styleClass="fehlerlabel"/>
+                    <h:outputText value="Status: " styleClass="showFehler_fehlerlabel"/>
                     <h:outputText value="#{fehlerBean.fehler.status.bezeichnung}"/>
 
-                    <h:outputText value="Priorität: " styleClass="fehlerlabel"/>
+                    <h:outputText value="Priorität: " styleClass="showFehler_fehlerlabel"/>
                     <h:outputText value="#{fehlerBean.fehler.prioritaet}"/>
 
-                    <h:outputText value="Bearbeiter: " styleClass="fehlerlabel"/>
+                    <h:outputText value="Bearbeiter: " styleClass="showFehler_fehlerlabel"/>
                     <h:outputText
                             value="#{fehlerBean.fehler.bearbeiter.vorname} #{fehlerBean.fehler.bearbeiter.name}"/>
 
-                    <h:outputText value="Beschreibung: " styleClass="fehlerlabel"/>
+                    <h:outputText value="Beschreibung: " styleClass="showFehler_fehlerlabel"/>
                     <h:outputText value="#{fehlerBean.fehler.beschreibung}"
                                   style="white-space:pre-line" escape="false"/>
                 </p:panelGrid>
 
                 <ui:repeat value="#{fehlerBean.fehler.kommentarList}" var="k">
                     <p:accordionPanel multiple="true">
-                        <p:tab
-                                title="#{k.nutzer.vorname} #{k.nutzer.name} am #{k.erstellt}:">
+                        <p:tab>
+                        <f:facet name="title">
+                        	<h:outputText value="#{k.nutzer.vorname} #{k.nutzer.name} am "/> 
+               				<h:outputText value="#{k.erstellt}">
+               				<f:convertDateTime dateStyle="short" type="both"
+                                           timeZone="Europe/Berlin"/>
+               				</h:outputText>
+               				<h:outputText value=":"/>
+            			</f:facet>
+     
                             <p:panelGrid id="kommentar" cellpadding="0" cellspacing="0"
                                          styleClass="noborderpanelgrid">
                                 <p:row>
@@ -98,7 +106,7 @@
                              styleClass="noborderpanelgrid">
                     <p:row>
                         <p:column colspan="2">
-                            <p:inputTextarea id="text" rows="5" cols="100" counter="display"
+                            <p:inputTextarea id="text" styleClass="showFehler_kommentarInput" rows="5" counter="display"
                                              maxlength="2000" counterTemplate="{0} characters remaining."
                                              autoResize="false" placeholder="Schreibe einen Kommentar..."
                                              required="true" value="#{addKommentarBean.kommentar.text}"/>

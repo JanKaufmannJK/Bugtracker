@@ -91,6 +91,19 @@ body {
     white-space: pre-wrap;
 }
 
-.fehlerlabel {
+.showFehler_fehlerlabel {
 	font-weight:bold;
+}
+
+.showFehler_kommentarInput{
+    padding: 0;
+    width:100%;
+}
+
+.showFehler_firstColumn {
+       width: 100px;
+       vertical-align: top;
+}
+.showFehler_secondColumn {
+       min-width: 600px;
 }
