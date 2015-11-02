@@ -31,12 +31,8 @@ public class AddFehlerBean {
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
-
 		creationStatus = prop.getProperty("addFehlerBean.creationStatus");
-		System.out.println(prop.getProperty("addFehlerBean.creationStatus"));
-		
 		nutzerList = nutzerService.selectUsers();
-		
 	}
 
 	@Autowired
@@ -50,12 +46,12 @@ public class AddFehlerBean {
 
 	@Autowired
 	private ProjektBean projektBean;
-	
+
 	@Autowired
 	private NutzerService nutzerService;
 
 	private Fehler fehler = new Fehler();
-	
+
 	private List<Nutzer> nutzerList = new ArrayList<Nutzer>();
 
 	private String creationStatus;
