@@ -7,13 +7,14 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 
 import de.berlin.htw.domain.Nutzer;
 import de.berlin.htw.service.NutzerService;
 
 @Component
-@Scope("singleton")
+@Scope(value="session", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class UserBean {
     
     @Autowired
@@ -23,9 +24,17 @@ public class UserBean {
     
     private Nutzer nutzer = new Nutzer();
     
+    private boolean isUserSet =false;
+    
     @PostConstruct
     public void init() {
         nutzerList = nutzerService.selectUsers();
+    }
+    
+    public String save(){
+    	
+    	isUserSet = true;
+    	return "/projektList.xhtml";
     }
     
     public List<Nutzer> getNutzerList() {
@@ -43,5 +52,8 @@ public class UserBean {
     public void setNutzer(Nutzer nutzer) {
         this.nutzer = nutzer;
     }
-    
+
+	public boolean getIsUserSet() {
+		return isUserSet;
+	}
 }

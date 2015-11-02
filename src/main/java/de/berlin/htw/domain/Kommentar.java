@@ -38,7 +38,7 @@ public class Kommentar {
     private String text;
 
 	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name = "NUNR")
+	@JoinColumn(name = "ERSTELLER")
 	private Nutzer nutzer;
 	
 	public Nutzer getNutzer() {

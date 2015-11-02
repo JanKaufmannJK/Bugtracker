@@ -1,15 +1,20 @@
 package de.berlin.htw.gui.page.Fehler;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import de.berlin.htw.domain.Fehler;
+import de.berlin.htw.domain.Nutzer;
 import de.berlin.htw.domain.Status;
 import de.berlin.htw.gui.page.Projekt.ProjektBean;
 import de.berlin.htw.service.FehlerService;
+import de.berlin.htw.service.NutzerService;
 import de.berlin.htw.service.StatusService;
 
 @Component
@@ -23,13 +28,23 @@ public class EditFehlerBean {
     private StatusService statusService;
     
     @Autowired
+    private NutzerService nutzerService;
+    
+    @Autowired
     private ProjektBean projektBean;
+    
+    private List<Nutzer> nutzerList = new ArrayList<Nutzer>();
     
     private Fehler fehler = new Fehler();
     
     private Status status = new Status();
     
     private List<Status> folgeStati = null;
+    
+    @PostConstruct
+    public void init(){
+    	nutzerList = nutzerService.selectUsers();
+    }
     
     public String showFehler(Fehler fehler) {
         
@@ -81,5 +96,21 @@ public class EditFehlerBean {
     public void setFolgeStati(List<Status> folgeStati) {
         this.folgeStati = folgeStati;
     }
+
+	public NutzerService getNutzerService() {
+		return nutzerService;
+	}
+
+	public void setNutzerService(NutzerService nutzerService) {
+		this.nutzerService = nutzerService;
+	}
+
+	public List<Nutzer> getNutzerList() {
+		return nutzerList;
+	}
+
+	public void setNutzerList(List<Nutzer> nutzerList) {
+		this.nutzerList = nutzerList;
+	}
     
 }

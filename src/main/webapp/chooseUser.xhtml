@@ -18,9 +18,9 @@
 				<h:panelGrid columns="2" cellpadding="5">
 					<p:outputLabel for="nutzer" value="Nutzer: " />
 					<p:selectOneMenu id="nutzer" value="#{userBean.nutzer}"
-						style="width:150px" converter ="#{nutzerListConverter}">
+						style="width:150px" converter ="#{nutzerListConverter}" required="true">
 						<f:selectItem itemLabel="Select User" itemValue=""
-							noSelectionOption="false" />
+							noSelectionOption="true" />
 						<f:selectItems value="#{userBean.nutzerList}" var="nutzer"
 							itemLabel="#{nutzer.name}" itemValue="#{nutzer}" />
 					</p:selectOneMenu>
@@ -28,7 +28,7 @@
 
 				<p:separator />
 
-				<p:commandButton value="Einloggen" action="/projektList.xhtml"
+				<p:commandButton value="Einloggen" action="#{userBean.save}"
 					update="errorMessages" icon="ui-icon-check" />
 			</p:panel>
 		</h:form>

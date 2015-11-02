@@ -34,14 +34,21 @@
 				<p:inputText required="true" id="prioritaet" maxlength="1"
 					value="#{editFehlerBean.fehler.prioritaet}" />
 					
-				<p:outputLabel value="Status" />
+				<p:outputLabel for="status" value="Status" />
 				<p:selectOneMenu id="status" value="#{editFehlerBean.status}" converter="#{statusListConverter}" style="width:150px">
 					<f:selectItem itemLabel="#{editFehlerBean.fehler.status.bezeichnung}" itemValue ="#{editFehlerBean.fehler.status}" />
 					<f:selectItems value="#{editFehlerBean.folgeStati}" var="stati" itemLabel="#{stati.bezeichnung}" itemValue="#{stati}" />		
 				</p:selectOneMenu>
 				
-				<p:outputLabel value="Bearbeiter" />
-				<p:outputLabel value="TODO" />
+				<p:outputLabel for="bearbeiter" value="Bearbeiter" />
+				<p:selectOneMenu id="bearbeiter"
+						value="#{editFehlerBean.fehler.bearbeiter}"
+						converter="#{nutzerListConverter}" style="width:150px">
+						<f:selectItem itemLabel="Kein Bearbeiter" itemValue=""/>					
+						<f:selectItems value="#{editFehlerBean.nutzerList}" var="nutzer"
+							itemLabel="#{nutzer.vorname} #{nutzer.name}" itemValue="#{nutzer}" />
+					</p:selectOneMenu>
+				
 			</p:panelGrid>
 			<p:commandButton id="save" action="#{editFehlerBean.aendern}"
 				value="Speichern" icon="ui-icon-disk" update = "errorMessages" />

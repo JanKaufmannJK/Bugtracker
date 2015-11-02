@@ -19,8 +19,16 @@
 					<p:inputText required="true" maxlength="64" id="bezeichnung"
 						value="#{addFehlerBean.fehler.bezeichnung}" />
 					<p:outputLabel for="prioritaet" value="Prioritaet" />
-					<p:inputText required="true" id="prioritaet" maxlength="1"
-						value="#{addFehlerBean.fehler.prioritaet}" />
+					<p:spinner id="prioritaet"
+						value="#{addFehlerBean.fehler.prioritaet}" min="0" max="9" />
+					<p:outputLabel for="bearbeiter" value="Bearbeiter" />
+					<p:selectOneMenu id="bearbeiter"
+						value="#{addFehlerBean.fehler.bearbeiter}"
+						converter="#{nutzerListConverter}" style="width:150px">
+						<f:selectItem itemLabel="Kein Bearbeiter" itemValue="" />
+						<f:selectItems value="#{addFehlerBean.nutzerList}" var="nutzer"
+							itemLabel="#{nutzer.name}" itemValue="#{nutzer}" />
+					</p:selectOneMenu>
 				</p:panelGrid>
 				<p>
 					<p:outputLabel for="beschreibung" value="Beschreibung" />

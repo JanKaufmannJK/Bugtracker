@@ -1,7 +1,9 @@
-package de.berlin.htw.gui.page.Projekt;
+package de.berlin.htw.gui.page.Fehler;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
 import javax.annotation.PostConstruct;
@@ -11,8 +13,11 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import de.berlin.htw.domain.Fehler;
+import de.berlin.htw.domain.Nutzer;
 import de.berlin.htw.domain.Status;
+import de.berlin.htw.gui.page.Projekt.ProjektBean;
 import de.berlin.htw.service.FehlerService;
+import de.berlin.htw.service.NutzerService;
 import de.berlin.htw.service.StatusService;
 
 @Component
@@ -29,6 +34,9 @@ public class AddFehlerBean {
 
 		creationStatus = prop.getProperty("addFehlerBean.creationStatus");
 		System.out.println(prop.getProperty("addFehlerBean.creationStatus"));
+		
+		nutzerList = nutzerService.selectUsers();
+		
 	}
 
 	@Autowired
@@ -42,8 +50,13 @@ public class AddFehlerBean {
 
 	@Autowired
 	private ProjektBean projektBean;
+	
+	@Autowired
+	private NutzerService nutzerService;
 
 	private Fehler fehler = new Fehler();
+	
+	private List<Nutzer> nutzerList = new ArrayList<Nutzer>();
 
 	private String creationStatus;
 
@@ -97,6 +110,22 @@ public class AddFehlerBean {
 
 	public void setCreationStatus(String creationStatus) {
 		this.creationStatus = creationStatus;
+	}
+
+	public List<Nutzer> getNutzerList() {
+		return nutzerList;
+	}
+
+	public void setNutzerList(List<Nutzer> nutzerList) {
+		this.nutzerList = nutzerList;
+	}
+
+	public NutzerService getNutzerService() {
+		return nutzerService;
+	}
+
+	public void setNutzerService(NutzerService nutzerService) {
+		this.nutzerService = nutzerService;
 	}
 
 }

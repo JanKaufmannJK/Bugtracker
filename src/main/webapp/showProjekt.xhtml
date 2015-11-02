@@ -20,7 +20,7 @@
 				icon="icon-plus-2" action="/addFehler.xhtml" />
 
 			<p:dataTable value="#{projektBean.projekt.fehlerList}" var="f"
-				resizableColumns="true" >
+				resizableColumns="true">
 
 				<f:facet name="header">
 					Expand rows to see detailed information				
@@ -33,13 +33,21 @@
 					<h:outputText value="#{f.bezeichnung}" />
 				</p:column>
 				<p:column headerText="Erstellt">
-					<h:outputText value="#{f.erstellt}" />
+					<h:outputText value="#{f.erstellt}">
+						<f:convertDateTime dateStyle="short" type="both" timeZone="Europe/Berlin"/>
+					</h:outputText>
 				</p:column>
 				<p:column headerText="Status">
 					<h:outputText value="#{f.status.bezeichnung}" />
 				</p:column>
 				<p:column headerText="Prioritaet">
 					<h:outputText value="#{f.prioritaet}" />
+				</p:column>
+				<p:column headerText="Ersteller">
+					<h:outputText value="#{f.ersteller.name}" />
+				</p:column>
+				<p:column headerText="Bearbeiter">
+					<h:outputText value="#{f.bearbeiter.name}" />
 				</p:column>
 				<p:column headerText="Aktion">
 
@@ -52,7 +60,8 @@
 				</p:column>
 
 				<p:rowExpansion>
-					<p:outputPanel deferred="true" style="white-space:pre-line" escape="false">
+					<p:outputPanel deferred="true" style="white-space:pre-line"
+						escape="false">
 						<h3>Beschreibung</h3>
 						<p>#{f.beschreibung}</p>
 					</p:outputPanel>

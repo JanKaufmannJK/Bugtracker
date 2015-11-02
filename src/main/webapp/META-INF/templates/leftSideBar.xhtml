@@ -10,7 +10,7 @@
 	</f:facet>
 
 	<h:panelGrid columns="1">
-		<h:link value="Projekte" outcome="/projektList.xhtml" />
+		<h:link value="Projekte" outcome="/projektList.xhtml" rendered="#{userBean.isUserSet}"/>
 		<p:separator />
 		<h:link value="Logout" outcome="/chooseUser.xhtml" />
 	</h:panelGrid>
