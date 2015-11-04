@@ -62,13 +62,7 @@ public class EditFehlerBean {
     }
     
     public String toggleFehler(Fehler f) {
-        
-        int fehlerId = projektBean.getProjekt().getFehlerList().indexOf(f);
-        if (fehler.getAktiv() == true) {
-            projektBean.getProjekt().getFehlerList().get(fehlerId).setAktiv(false);
-        } else {
-            projektBean.getProjekt().getFehlerList().get(fehlerId).setAktiv(true);
-        }
+        f.setAktiv(!f.getAktiv());
         fehlerService.mergeObject(f);
         return "/showProjekt.xhtml";
     }
