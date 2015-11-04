@@ -9,24 +9,22 @@
     <ui:param name="title" value="BugTracker - Projekte"/>
     <ui:define name="content">
         <h2>
-            <h:outputText value="Fehler"/>
+            <h:outputText value="Fehler anzeigen"/>
         </h2>
         <h:form id="form">
-            <p:commandButton value="Fehlerliste" id="back"
+            <p:commandButton value="zurück zur Fehlerliste" id="back"
                              icon="ui-icon-circle-triangle-w" immediate="true"
                              action="showProjekt?faces-redirect=true"/>
 
             <p></p>
 
-            <p:panelGrid id="fehler" columns="1" border="1" cellpadding="10"
-                         cellspacing="1">
+            <p:panelGrid id="borderGrid" columns="1">
                 <f:facet name="header">
                     <h:outputText value="#{fehlerBean.fehler.bezeichnung}"/>
                 </f:facet>
 
 
-                <p:panelGrid id="fehlerdetail" columns="2" cellpadding="0"
-                             cellspacing="0" styleClass="noborderpanelgrid" columnClasses="showFehler_firstColumn, showFehler_secondColumn">
+                <p:panelGrid id="fehlerGrid" columns="2" styleClass="noborderpanelgrid" columnClasses="showFehler_firstColumn, showFehler_secondColumn">
 
                     <h:outputText value="Erstellt am: " styleClass="showFehler_fehlerlabel"/>
                     <h:outputText value="#{fehlerBean.fehler.erstellt}">
@@ -65,8 +63,7 @@
                				<h:outputText value=":"/>
             			</f:facet>
      
-                            <p:panelGrid id="kommentar" cellpadding="0" cellspacing="0"
-                                         styleClass="noborderpanelgrid">
+                            <p:panelGrid id="showKommentarGrid" styleClass="noborderpanelgrid">
                                 <p:row>
                                     <p:column>
                                         <h:outputText style="font-style:italic"
@@ -102,12 +99,11 @@
                     </p:accordionPanel>
                 </ui:repeat>
 
-                <p:panelGrid id="kommentar" cellpadding="0" cellspacing="0"
-                             styleClass="noborderpanelgrid">
+                <p:panelGrid id="addKommentarGrid" styleClass="noborderpanelgrid">
                     <p:row>
                         <p:column colspan="2">
-                            <p:inputTextarea id="text" styleClass="showFehler_kommentarInput" rows="5" counter="display"
-                                             maxlength="2000" counterTemplate="{0} characters remaining."
+                            <p:inputTextarea id="kommentar" styleClass="showFehler_kommentarInput" rows="5" counter="display"
+                                             maxlength="2000" counterTemplate="{0} Zeichen verbleiben."
                                              autoResize="false" placeholder="Schreibe einen Kommentar..."
                                              required="true" value="#{addKommentarBean.kommentar.text}"/>
                         </p:column>
@@ -116,7 +112,7 @@
                         <p:column>
                             <h:outputText id="display"/>
                         </p:column>
-                        <p:column style="text-align: right">
+                        <p:column style="padding:7px; text-align: right">
                             <p:commandButton value="Posten" id="post" icon="ui-icon-disk"
                                              action="#{addKommentarBean.speichern}" update="@form"/>
                         </p:column>

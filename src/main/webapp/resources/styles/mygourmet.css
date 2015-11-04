@@ -107,3 +107,7 @@ body {
 .showFehler_secondColumn {
        min-width: 600px;
 }
+
+.nopadding {
+	spacing:100px;
+}
