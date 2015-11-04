@@ -57,6 +57,9 @@ public class Fehler {
 
 	@Column(name = "PRIO")
 	private int prioritaet;
+	
+	@Column(name ="AKTIV")
+	private boolean aktiv;
 
 	@ManyToOne
 	@JoinColumn(name = "PROJEKT_PRONR", referencedColumnName = "PRONR")
@@ -145,4 +148,12 @@ public class Fehler {
 	public void setBearbeiter(Nutzer bearbeiter) {
 		this.bearbeiter = bearbeiter;
 	}
+
+    public boolean getAktiv() {
+        return aktiv;
+    }
+
+    public void setAktiv(boolean aktiv) {
+        this.aktiv = aktiv;
+    }
 }

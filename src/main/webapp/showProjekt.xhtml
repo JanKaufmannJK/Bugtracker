@@ -22,9 +22,16 @@
 			<p></p>
 
 			<p:dataTable value="#{projektBean.projekt.fehlerList}" var="f"
-				resizableColumns="true">
+				resizableColumns="true" widgetVar="fehlerTable" id="fehlerData"
+				filteredValue="#{editFehlerBean.filteredFehler}">
 
 				<f:facet name="header">
+					<p:outputPanel>
+						<h:outputText value="Search all fields:" />
+						<p:inputText id="globalFilter"
+							onkeyup="PF('fehlerTable').filter()" style="width:150px"
+							placeholder="Enter keyword" />
+					</p:outputPanel>
 					Expand rows to see detailed information				
 				</f:facet>
 				<p:column style="width:16px">
@@ -36,7 +43,8 @@
 				</p:column>
 				<p:column headerText="Erstellt">
 					<h:outputText value="#{f.erstellt}">
-						<f:convertDateTime dateStyle="short" type="both" timeZone="Europe/Berlin"/>
+						<f:convertDateTime dateStyle="short" type="both"
+							timeZone="Europe/Berlin" />
 					</h:outputText>
 				</p:column>
 				<p:column headerText="Status">
@@ -51,14 +59,27 @@
 				<p:column headerText="Bearbeiter">
 					<h:outputText value="#{f.bearbeiter.name}" />
 				</p:column>
+				<p:column filterBy="#{f.aktiv}" filterMatchMode="equals">
+					<f:facet name="filter">
+						<p:selectOneButton onchange="PF('fehlerTable').filter()"
+							id="aktivFilter">
+							<f:converter converterId="javax.faces.Boolean" />
+							<f:selectItem itemLabel="Alle" itemValue="" />
+							<f:selectItem itemLabel="Aktiv" itemValue="true" />
+							<f:selectItem itemLabel="Inaktiv" itemValue="false" />
+						</p:selectOneButton>
+					</f:facet>
+					<h:outputText value="#{f.aktiv ? 'Aktiv': 'Inaktiv'}" />
+				</p:column>
 				<p:column headerText="Aktion">
 
 					<p:commandButton action="#{fehlerBean.showFehler(f)}" id="oeffnen"
 						icon="ui-icon-folder-open" title="oeffnen" />
 					<p:commandButton action="#{editFehlerBean.showFehler(f)}"
 						id="bearbeiten" icon="ui-icon-pencil" title="bearbeiten" />
-					<p:commandButton action="#{editFehlerBean.removeFehler(f)}"
-						id="loeschen" icon="ui-icon-trash" title="loeschen" update="@form" />
+					<p:commandButton action="#{editFehlerBean.toggleFehler(f)}"
+						id="toggle" icon="ui-icon-transferthick-e-w" title="aktivieren/deaktivieren"
+						update="@form" />
 				</p:column>
 
 				<p:rowExpansion>
@@ -75,8 +96,18 @@
 					</f:facet>
 			</p:dataTable>
 
-
+			<script>
+				jQuery(document)
+						.ready(
+								function() {
+									jQuery(
+											'input[id*="form:fehlerData:aktivFilter:1"]')
+											.click();
+									PF('fehlerTable').filter()
+								});
+			</script>
 		</h:form>
+
 	</ui:define>
 
 </ui:composition>

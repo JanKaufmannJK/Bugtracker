@@ -72,7 +72,7 @@ public class AddFehlerBean {
 				status = s;
 			}
 		}
-
+		fehler.setAktiv(true);
 		fehler.setStatus(status);
 		Date date = new Date();
 		fehler.setErsteller(projektBean.getUserBean().getNutzer());

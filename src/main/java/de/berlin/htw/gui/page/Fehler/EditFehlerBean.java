@@ -41,15 +41,17 @@ public class EditFehlerBean {
     
     private List<Status> folgeStati = null;
     
+    private List<Fehler> filteredFehler;
+    
     @PostConstruct
-    public void init(){
-    	nutzerList = nutzerService.selectUsers();
+    public void init() {
+        nutzerList = nutzerService.selectUsers();
     }
     
-    public String showFehler(Fehler fehler) {
+    public String showFehler(Fehler f) {
         
-        this.setFehler(fehler);
-        folgeStati = statusService.selectFolgeStati(fehler.getStatus().getStatusInfo());
+        this.setFehler(f);
+        folgeStati = statusService.selectFolgeStati(f.getStatus().getStatusInfo());
         return "/editFehler.xhtml";
     }
     
@@ -59,9 +61,15 @@ public class EditFehlerBean {
         return "/showProjekt.xhtml";
     }
     
-    public String removeFehler(Fehler fehler) {
-        projektBean.getProjekt().getFehlerList().remove(fehler);
-        fehlerService.removeObject(fehler);
+    public String toggleFehler(Fehler f) {
+        
+        int fehlerId = projektBean.getProjekt().getFehlerList().indexOf(f);
+        if (fehler.getAktiv() == true) {
+            projektBean.getProjekt().getFehlerList().get(fehlerId).setAktiv(false);
+        } else {
+            projektBean.getProjekt().getFehlerList().get(fehlerId).setAktiv(true);
+        }
+        fehlerService.mergeObject(f);
         return "/showProjekt.xhtml";
     }
     
@@ -96,21 +104,29 @@ public class EditFehlerBean {
     public void setFolgeStati(List<Status> folgeStati) {
         this.folgeStati = folgeStati;
     }
-
-	public NutzerService getNutzerService() {
-		return nutzerService;
-	}
-
-	public void setNutzerService(NutzerService nutzerService) {
-		this.nutzerService = nutzerService;
-	}
-
-	public List<Nutzer> getNutzerList() {
-		return nutzerList;
-	}
-
-	public void setNutzerList(List<Nutzer> nutzerList) {
-		this.nutzerList = nutzerList;
-	}
+    
+    public NutzerService getNutzerService() {
+        return nutzerService;
+    }
+    
+    public void setNutzerService(NutzerService nutzerService) {
+        this.nutzerService = nutzerService;
+    }
+    
+    public List<Nutzer> getNutzerList() {
+        return nutzerList;
+    }
+    
+    public void setNutzerList(List<Nutzer> nutzerList) {
+        this.nutzerList = nutzerList;
+    }
+    
+    public List<Fehler> getFilteredFehler() {
+        return filteredFehler;
+    }
+    
+    public void setFilteredFehler(List<Fehler> filteredFehler) {
+        this.filteredFehler = filteredFehler;
+    }
     
 }

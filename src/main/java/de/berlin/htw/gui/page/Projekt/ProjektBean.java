@@ -22,17 +22,19 @@ public class ProjektBean {
     
     @Autowired
     private FehlerService fehlerService;
-
-	@Autowired
-	private UserBean userBean;    
+    
+    @Autowired
+    private UserBean userBean;
     
     private Projekt projekt = new Projekt();
     
     private List<Projekt> projektList;
     
+    
     @PostConstruct
     private void init() {
         projektList = fehlerService.selectProjekteFromDb();
+        
     }
     
     public List<Projekt> getProjektList() {
@@ -59,12 +61,13 @@ public class ProjektBean {
     public void setBugtrackerService(FehlerService bugtrackerService) {
         this.fehlerService = bugtrackerService;
     }
+    
+    public UserBean getUserBean() {
+        return userBean;
+    }
+    
+    public void setUserBean(UserBean userBean) {
+        this.userBean = userBean;
+    }
 
-	public UserBean getUserBean() {
-		return userBean;
-	}
-
-	public void setUserBean(UserBean userBean) {
-		this.userBean = userBean;
-	}
 }
