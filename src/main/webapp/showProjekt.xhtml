@@ -78,7 +78,7 @@
 					<p:commandButton action="#{editFehlerBean.showFehler(f)}"
 						id="bearbeiten" icon="ui-icon-pencil" title="bearbeiten" />
 					<p:commandButton action="#{editFehlerBean.toggleFehler(f)}"
-						id="toggle" icon="#{f.aktiv ? 'ui-icon-trash': 'ui-icon-arrowreturnthick-1-w'}" title="#{f.aktiv ? 'löschen': 'wiederherstellen'}"
+						id="toggle" icon="#{f.aktiv ? 'ui-icon-power': 'ui-icon-arrowreturnthick-1-w'}" title="#{f.aktiv ? 'deaktivieren': 'wiederherstellen'}"
 						update="@form" />
 				</p:column>
 
