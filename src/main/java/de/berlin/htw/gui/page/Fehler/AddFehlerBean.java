@@ -89,7 +89,7 @@ public class AddFehlerBean {
 		fehlerService.persistObject(fehler);
 		fehler = new Fehler();
 
-		return "/showProjekt.xhtml";
+		return "showProjekt?faces-redirect=true";
 	}
 
 	public ProjektBean getProjektBean() {

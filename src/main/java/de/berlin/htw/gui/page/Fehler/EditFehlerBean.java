@@ -58,13 +58,12 @@ public class EditFehlerBean {
     public String aendern() {
         fehler.setStatus(status);
         fehlerService.mergeObject(fehler);
-        return "/showProjekt.xhtml";
+        return "showProjekt?faces-redirect=true";
     }
     
-    public String toggleFehler(Fehler f) {
+    public void toggleFehler(Fehler f) {
         f.setAktiv(!f.getAktiv());
         fehlerService.mergeObject(f);
-        return "/showProjekt.xhtml";
     }
     
     public ProjektBean getProjektBean() {

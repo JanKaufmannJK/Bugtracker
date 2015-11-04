@@ -23,7 +23,7 @@ public class FehlerBean {
 	
 	public String showFehler(Fehler fehler){
 		this.setFehler(fehler);
-		return "/showFehler.xhtml";
+		return "showFehler?faces-redirect=true";
 	}
 
 	public FehlerService getBugtrackerService() {

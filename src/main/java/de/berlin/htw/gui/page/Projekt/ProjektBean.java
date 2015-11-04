@@ -43,7 +43,7 @@ public class ProjektBean {
     
     public String showProjekt(Projekt projekt) {
         this.setProjekt(projekt);
-        return "/showProjekt.xhtml";
+        return "showProjekt?faces-redirect=true";
     }
     
     public Projekt getProjekt() {

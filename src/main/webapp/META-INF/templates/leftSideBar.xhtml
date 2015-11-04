@@ -5,15 +5,18 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-	<f:facet name="header">
-		<h:outputText value="Menue" />
-	</f:facet>
+	<h:form>
+		<f:facet name="header">
+			<h:outputText value="Menue" />
+		</f:facet>
 
-	<h:panelGrid columns="1">
-		<h:link value="Projekte" outcome="/projektList.xhtml" rendered="#{userBean.isUserSet}"/>
-		<p:separator />
-		<h:link value="Logout" outcome="/chooseUser.xhtml" />
-	</h:panelGrid>
-
+		<h:panelGrid columns="1">
+			<p:commandLink value="Projekte"
+				action="projektList?faces-redirect=true"
+				rendered="#{userBean.isUserSet}" />
+			<p:separator />
+			<p:commandLink value="Logout" action="chooseUser?faces-redirect=true" />
+		</h:panelGrid>
+	</h:form>
 
 </ui:composition>

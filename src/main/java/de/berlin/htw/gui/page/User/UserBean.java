@@ -34,7 +34,7 @@ public class UserBean {
     public String save(){
     	
     	isUserSet = true;
-    	return "/projektList.xhtml";
+    	return "projektList?faces-redirect=true";
     }
     
     public List<Nutzer> getNutzerList() {

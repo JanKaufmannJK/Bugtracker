@@ -23,19 +23,18 @@ public class EditKommentarBean {
 
 	public String showKommentar(Kommentar kommentar) {		
 		this.setKommentar(kommentar);
-		return "/editKommentar.xhtml";
+		return "editKommentar?faces-redirect=true";
 	}
 	
-	public String removeKommentar(Kommentar kommentar){
+	public void removeKommentar(Kommentar kommentar){
 		fehlerBean.getFehler().getKommentarList().remove(kommentar);
 		fehlerService.removeObject(kommentar);		
-		return "/showFehler";
 	}
 	
 	public String aendern(){
 	    fehlerService.mergeObject(kommentar);
 		kommentar = new Kommentar();
-		return "/showFehler.xhtml";
+		return "showFehler?faces-redirect=true";
 	}
 
 	public FehlerBean getFehlerBean() {

@@ -17,21 +17,14 @@
 
 		<h:form id="form">
 			<p:commandButton value="Fehler hinzufügen " id="newFehler"
-				icon="ui-icon-circle-plus" action="/addFehler.xhtml" />
+				icon="ui-icon-circle-plus" action="addFehler?faces-redirect=true" />
 
 			<p></p>
 
 			<p:dataTable value="#{projektBean.projekt.fehlerList}" var="f"
 				resizableColumns="true" widgetVar="fehlerTable" id="fehlerData"
 				filteredValue="#{editFehlerBean.filteredFehler}">
-
-				<f:facet name="header">
-					<p:outputPanel>
-						<h:outputText value="Search all fields:" />
-						<p:inputText id="globalFilter"
-							onkeyup="PF('fehlerTable').filter()" style="width:150px"
-							placeholder="Enter keyword" />
-					</p:outputPanel>
+				<f:facet name="header">				
 					Expand rows to see detailed information				
 				</f:facet>
 				<p:column style="width:16px">
@@ -95,17 +88,7 @@
 						In Summe existieren #{fn:length(projektBean.projekt.fehlerList)} Fehler.
 					</f:facet>
 			</p:dataTable>
-
-			<script>
-				jQuery(document)
-						.ready(
-								function() {
-									jQuery(
-											'input[id*="form:fehlerData:aktivFilter:1"]')
-											.click();
-									PF('fehlerTable').filter()
-								});
-			</script>
+			<h:outputScript library="js" name="aktiv.js"  /> 
 		</h:form>
 
 	</ui:define>

@@ -45,7 +45,7 @@
 			<p:commandButton id="save" action="#{addFehlerBean.speichern}"
 				value="Speichern" icon="ui-icon-disk" update="fehlerPanel" />
 
-			<p:commandButton id="cancel" action="/showProjekt.xhtml"
+			<p:commandButton id="cancel" action="showProjekt?faces-redirect=true"
 				value="Abbrechen" immediate="true" icon="ui-icon-close" />
 
 		</h:form>

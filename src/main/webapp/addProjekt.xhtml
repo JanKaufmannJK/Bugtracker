@@ -20,7 +20,7 @@
             </p:panelGrid>
             <p:commandButton id="save" action="#{addProjektBean.speichern}" value="Speichern" icon="ui-icon-disk" />
  
-            <p:commandButton id="cancel" action="/projektList.xhtml" value="Abbrechen" immediate="true" icon="ui-icon-close"/>
+            <p:commandButton id="cancel" action="projektList?faces-redirect=true" value="Abbrechen" immediate="true" icon="ui-icon-close"/>
         </h:form>
     </ui:define>
 

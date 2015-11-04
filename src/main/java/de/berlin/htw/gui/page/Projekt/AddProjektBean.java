@@ -32,7 +32,7 @@ public class AddProjektBean {
 		projektBean.getProjektList().add(projekt);
 		fehlerService.persistObject(projekt);
 		projekt = new Projekt();
-		return "/projektList.xhtml";
+		return "projektList?faces-redirect=true";
 	}
 
 	public ProjektBean getProjektBean() {

@@ -27,9 +27,6 @@ public class Kommentar {
 	@Id
 	@Column(name ="KOMMENTAR_ID")
 	private Long koId;
-	
-	@Column(name ="KONR")
-    private Long koNr;
 
 	@Column(name ="ERSTELLT")
     private Date erstellt;
@@ -59,14 +56,6 @@ public class Kommentar {
 
 	public void setKoId(Long koId) {
 		this.koId = koId;
-	}
-
-	public Long getKoNr() {
-		return koNr;
-	}
-
-	public void setKoNr(Long koNr) {
-		this.koNr = koNr;
 	}
 
 	public Date getErstellt() {
