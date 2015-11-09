@@ -36,6 +36,8 @@ public class EditFehlerBean {
     
     private Fehler fehler = new Fehler();
     
+    private Fehler verweisFehler = new Fehler();
+    
     private Status status = new Status();
     
     private List<Status> folgeStati = null;
@@ -119,5 +121,13 @@ public class EditFehlerBean {
     public void setFilteredFehler(List<Fehler> filteredFehler) {
         this.filteredFehler = filteredFehler;
     }
+
+	public Fehler getVerweisFehler() {
+		return verweisFehler;
+	}
+
+	public void setVerweisFehler(Fehler verweisFehler) {
+		this.verweisFehler = verweisFehler;
+	}
     
 }

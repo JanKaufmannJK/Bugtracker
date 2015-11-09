@@ -15,48 +15,64 @@
 		</h2>
 
 		<h:form id="form">
-		<p:messages id="errorMessages" style="color:red;margin:8px;" />
+			<p:messages id="errorMessages" style="color:red;margin:8px;" />
 			<p:panelGrid id="borderGrid" columns="1">
-			   	<f:facet name="header">
-                    <h:outputText value="#{editFehlerBean.fehler.bezeichnung}"/>
-                </f:facet>
-				<p:panelGrid id="fehlerGrid" columns="2" styleClass="noborderpanelgrid">
+				<f:facet name="header">
+					<h:outputText value="#{editFehlerBean.fehler.bezeichnung}" />
+				</f:facet>
+				<p:panelGrid id="fehlerGrid" columns="2"
+					styleClass="noborderpanelgrid">
 					<p:outputLabel value="Bezeichnung" />
 					<p:inputText required="true" maxlength="64" id="bezeichnung"
 						value="#{editFehlerBean.fehler.bezeichnung}" />
-						
+
 					<p:outputLabel for="beschreibung" value="Beschreibung" />
 					<p:inputTextarea id="beschreibung" rows="5" cols="70"
 						counter="display" maxlength="2000"
 						counterTemplate="{0} Zeichen verbleiben." autoResize="true"
 						value="#{editFehlerBean.fehler.beschreibung}" required="true" />
 					<p></p>
-					<h:outputText id="display" />					
-						
-						
+					<h:outputText id="display" />
+
+
 					<p:outputLabel for="prioritaet" value="Prioritaet" />
 					<p:spinner id="prioritaet"
 						value="#{editFehlerBean.fehler.prioritaet}" min="0" max="9" />
-						
+
 					<p:outputLabel for="status" value="Status" />
-					<p:selectOneMenu id="status" value="#{editFehlerBean.status}" converter="#{statusListConverter}" style="width:150px">
-						<f:selectItem itemLabel="#{editFehlerBean.fehler.status.bezeichnung}" itemValue ="#{editFehlerBean.fehler.status}" />
-						<f:selectItems value="#{editFehlerBean.folgeStati}" var="stati" itemLabel="#{stati.bezeichnung}" itemValue="#{stati}" />		
+					<p:selectOneMenu id="status" value="#{editFehlerBean.status}"
+						converter="#{statusListConverter}" style="width:150px">
+						<f:selectItem
+							itemLabel="#{editFehlerBean.fehler.status.bezeichnung}"
+							itemValue="#{editFehlerBean.fehler.status}" />
+						<f:selectItems value="#{editFehlerBean.folgeStati}" var="stati"
+							itemLabel="#{stati.bezeichnung}" itemValue="#{stati}" />
 					</p:selectOneMenu>
-					
+
 					<p:outputLabel for="bearbeiter" value="Bearbeiter" />
 					<p:selectOneMenu id="bearbeiter"
-							value="#{editFehlerBean.fehler.bearbeiter}"
-							converter="#{nutzerListConverter}" style="width:150px">
-							<f:selectItem itemLabel="Kein Bearbeiter" itemValue=""/>					
-							<f:selectItems value="#{editFehlerBean.nutzerList}" var="nutzer"
-								itemLabel="#{nutzer.vorname} #{nutzer.name}" itemValue="#{nutzer}" />
+						value="#{editFehlerBean.fehler.bearbeiter}"
+						converter="#{nutzerListConverter}" style="width:150px">
+						<f:selectItem itemLabel="Kein Bearbeiter" itemValue="" />
+						<f:selectItems value="#{editFehlerBean.nutzerList}" var="nutzer"
+							itemLabel="#{nutzer.vorname} #{nutzer.name}"
+							itemValue="#{nutzer}" />
 					</p:selectOneMenu>
+
+					<p:outputLabel for="verweise" value="Verweise" />
+					<p:selectOneMenu id="verweise"
+						value="#{editFehlerBean.fehler.fehlerVerweise}"
+						converter="#{fehlerListConverter}" style="width:150px">
+						<f:selectItem itemLabel="Kein Verweis" itemValue="" />
+						<f:selectItems value="#{projektBean.projekt.fehlerList}" var="v"
+							itemLabel="#{v.beschreibung}" itemValue="#{v}" />
+					</p:selectOneMenu>
+
 					<p></p>
 					<p:panelGrid colums="2">
 						<p:commandButton id="save" action="#{editFehlerBean.aendern}"
 							value="Speichern" icon="ui-icon-disk" update="errorMessages" />
-	
+
 						<p:commandButton id="cancel" action="/showProjekt.xhtml"
 							value="Abbrechen" immediate="true" icon="ui-icon-close" />
 					</p:panelGrid>

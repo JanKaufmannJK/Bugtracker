@@ -20,5 +20,7 @@ public interface FehlerService {
     public <T> void removeObject(T entity);
     
     public void fehlerUpdate(Fehler fehler, Status status);
+    
+    public Object findFehlerId(long fehler_Id);
 
 }

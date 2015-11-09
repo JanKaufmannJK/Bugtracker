@@ -3,6 +3,7 @@ package de.berlin.htw.bugtracker.Fehler.Domain;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,11 +13,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+
+import org.hibernate.Hibernate;
 
 import de.berlin.htw.bugtracker.Nutzer.Domain.Nutzer;
 import de.berlin.htw.bugtracker.Status.Domain.Status;
@@ -33,6 +38,14 @@ public class Fehler {
 	@Id
 	@Column(name = "FEHLER_ID")
 	private Long fehler_Id;
+
+	public Long getFehler_Id() {
+		return fehler_Id;
+	}
+
+	public void setFehler_Id(Long fehler_Id) {
+		this.fehler_Id = fehler_Id;
+	}
 
 	@Column(name = "FENR")
 	private Long feNr;
@@ -70,6 +83,11 @@ public class Fehler {
 	
 	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "fehler")
 	private List<Kommentar> kommentarList = new ArrayList<Kommentar>();
+	
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "FEHLER_VERWEIS", joinColumns = @JoinColumn(name = "FEHLER_ID") )
+	private List<Fehler> fehlerVerweise = new ArrayList<Fehler>();
 
 
 	public Long getFeNr() {
@@ -159,4 +177,31 @@ public class Fehler {
     public void setAktiv(boolean aktiv) {
         this.aktiv = aktiv;
     }
+
+	public List<Fehler> getFehlerVerweise() {
+		return fehlerVerweise;
+	}
+
+	public void setFehlerVerweise(List<Fehler> fehlerVerweise) {
+		this.fehlerVerweise = fehlerVerweise;
+	}
+	
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (fehler_Id != null ? fehler_Id.hashCode() : 0);
+		return hash;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if (!(object instanceof Status)) {
+			return false;
+		}
+		Fehler other = (Fehler) object;
+		if ((this.fehler_Id == null && other.fehler_Id != null) || (this.fehler_Id != null && !this.fehler_Id.equals(other.fehler_Id))) {
+			return false;
+		}
+		return true;
+	}
 }
