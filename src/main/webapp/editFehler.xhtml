@@ -35,8 +35,8 @@
 						
 						
 					<p:outputLabel for="prioritaet" value="Prioritaet" />
-					<p:inputText required="true" id="prioritaet" maxlength="1"
-						value="#{editFehlerBean.fehler.prioritaet}" />
+					<p:spinner id="prioritaet"
+						value="#{editFehlerBean.fehler.prioritaet}" min="0" max="9" />
 						
 					<p:outputLabel for="status" value="Status" />
 					<p:selectOneMenu id="status" value="#{editFehlerBean.status}" converter="#{statusListConverter}" style="width:150px">

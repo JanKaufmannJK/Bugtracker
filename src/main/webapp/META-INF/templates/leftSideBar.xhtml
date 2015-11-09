@@ -10,12 +10,13 @@
 			<h:outputText value="Menue" />
 		</f:facet>
 
-		<h:panelGrid columns="1">
+		<h:panelGrid id="panel" columns="1">
 			<p:commandLink value="Projekte"
 				action="projektList?faces-redirect=true"
 				rendered="#{userBean.isUserSet}" />
 			<p:separator />
-			<p:commandLink value="Logout" action="chooseUser?faces-redirect=true" />
+			<p:commandLink value="Logout" action="#{userBean.logout}" update="panel" />		
+
 		</h:panelGrid>
 	</h:form>
 
