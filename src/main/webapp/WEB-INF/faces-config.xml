@@ -7,10 +7,10 @@
     <!-- PhaseListener -->
     <lifecycle>
         <phase-listener>
-            de.berlin.htw.gui.jsf.DebugPhaseListener
+            de.berlin.htw.bugtracker.jsf.DebugPhaseListener
         </phase-listener>
         <phase-listener>
-            de.berlin.htw.gui.jsf.ParameterPhaseListener
+            de.berlin.htw.bugtracker.jsf.ParameterPhaseListener
         </phase-listener>
     </lifecycle>
     
