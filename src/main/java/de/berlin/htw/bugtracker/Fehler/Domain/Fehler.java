@@ -3,8 +3,8 @@ package de.berlin.htw.bugtracker.Fehler.Domain;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -81,14 +81,19 @@ public class Fehler {
 	@JoinColumn(name = "PROJEKT_PRONR", referencedColumnName = "PRONR")
 	private Projekt projekt;
 	
-	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "fehler")
+	@OneToMany(cascade = CascadeType.REMOVE, mappedBy = "fehler")
 	private List<Kommentar> kommentarList = new ArrayList<Kommentar>();
 	
 	
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "FEHLER_VERWEIS", joinColumns = @JoinColumn(name = "FEHLER_ID") )
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "FEHLER_VERWEIS", joinColumns = @JoinColumn(name = "FEHLER_ID"), inverseJoinColumns=@JoinColumn(name="VERWEIS_ID") )
 	private List<Fehler> fehlerVerweise = new ArrayList<Fehler>();
 
+	@PostConstruct
+	public void init(){
+	    
+	    Hibernate.initialize(getFehlerVerweise());
+	}
 
 	public Long getFeNr() {
 		return feNr;
@@ -195,7 +200,7 @@ public class Fehler {
 
 	@Override
 	public boolean equals(Object object) {
-		if (!(object instanceof Status)) {
+		if (!(object instanceof Fehler)) {
 			return false;
 		}
 		Fehler other = (Fehler) object;

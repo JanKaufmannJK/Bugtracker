@@ -49,15 +49,15 @@ public class EditFehlerBean {
         nutzerList = nutzerService.selectUsers();
     }
     
-    public String showFehler(Fehler f) {
-        
+    public String showFehler(Fehler f) {       
         this.setFehler(f);
         folgeStati = statusService.selectFolgeStati(f.getStatus().getStatusInfo());
         return "/editFehler.xhtml";
     }
     
     public String aendern() {        
-        fehlerService.fehlerUpdate(fehler, status);
+        fehlerService.fehlerUpdate(fehler, verweisFehler, status);
+        verweisFehler = new Fehler();
         return "showProjekt?faces-redirect=true";
     }
     

@@ -61,11 +61,11 @@
 
 					<p:outputLabel for="verweise" value="Verweise" />
 					<p:selectOneMenu id="verweise"
-						value="#{editFehlerBean.fehler.fehlerVerweise}"
+						value="#{editFehlerBean.verweisFehler}"
 						converter="#{fehlerListConverter}" style="width:150px">
 						<f:selectItem itemLabel="Kein Verweis" itemValue="" />
 						<f:selectItems value="#{projektBean.projekt.fehlerList}" var="v"
-							itemLabel="#{v.beschreibung}" itemValue="#{v}" />
+							itemLabel="#{v.bezeichnung}" itemValue="#{v}" />
 					</p:selectOneMenu>
 
 					<p></p>

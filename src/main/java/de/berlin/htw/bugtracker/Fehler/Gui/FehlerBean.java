@@ -1,6 +1,5 @@
 package de.berlin.htw.bugtracker.Fehler.Gui;
 
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -21,7 +20,8 @@ public class FehlerBean {
 	@Autowired
 	private ProjektBean projektBean;
 	
-	public String showFehler(Fehler fehler){		
+	public String showFehler(Fehler fehler){
+	    fehler.setKommentarList(fehlerService.initFehlerKommentare(fehler));
 		this.setFehler(fehler);
 		return "showFehler?faces-redirect=true";
 	}

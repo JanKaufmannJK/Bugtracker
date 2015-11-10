@@ -3,6 +3,7 @@ package de.berlin.htw.bugtracker.Fehler.Service;
 import java.util.List;
 
 import de.berlin.htw.bugtracker.Fehler.Domain.Fehler;
+import de.berlin.htw.bugtracker.Fehler.Domain.Kommentar;
 import de.berlin.htw.bugtracker.Fehler.Domain.Projekt;
 import de.berlin.htw.bugtracker.Status.Domain.Status;
 
@@ -19,8 +20,10 @@ public interface FehlerService {
     
     public <T> void removeObject(T entity);
     
-    public void fehlerUpdate(Fehler fehler, Status status);
+    public void fehlerUpdate(Fehler fehler, Fehler verweisFehler, Status status);
     
     public Object findFehlerId(long fehler_Id);
+    
+    public List<Kommentar> initFehlerKommentare(Fehler fehler);
 
 }
