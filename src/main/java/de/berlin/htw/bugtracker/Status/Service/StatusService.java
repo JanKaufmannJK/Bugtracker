@@ -4,17 +4,7 @@ import java.util.List;
 
 import de.berlin.htw.bugtracker.Status.Domain.Status;
 
-public interface StatusService {
-    
-    /**
-     * Die Methode gibt zu einem Status die, durch den Status-Workflow definierten, passenden Folgestati zurück.
-     * Dabei benötigt die Methode die im Status hinterlegte Liste mit den IDs der Folgestati.
-     * Die gewünschte Liste wird dann mit Hilfe einer Query aus der Datenbank gelesen.
-     * 
-     * @param	folgeStatiStaNr		Long Liste mit den IDs der Folgestati
-     * @return 						Objektliste vom Typ Status
-     */
-    public List<Status> selectFolgeStati(List<Long> folgeStatiStaNr);    
+public interface StatusService { 
     
     /**
      * Die Methode holt sämtliche Status-Varianten aus der Datenbank und gibt eine Liste aus Statusobjekten zurück.
