@@ -34,14 +34,14 @@ public class FehlerServiceImpl implements FehlerService {
 	public List<Fehler> getVerweisListe(Fehler fehler) {
 		TypedQuery<Fehler> query;
 		if (fehler.getFehlerVerweise().isEmpty()) {
-			query = em.createQuery("SELECT f FROM Fehler f WHERE f != :fehler", Fehler.class);
+			query = em.createQuery("SELECT f FROM Fehler f WHERE f != :fehler AND f.aktiv = true", Fehler.class);
 
 		} else {
-			query = em.createQuery("SELECT f FROM Fehler f WHERE f != :fehler AND f NOT IN :verweisliste",
+			query = em.createQuery("SELECT f FROM Fehler f WHERE f != :fehler AND f NOT IN :verweisliste AND f.aktiv = true",
 					Fehler.class);
 			query.setParameter("verweisliste", fehler.getFehlerVerweise());
 		}
-		query.setParameter("fehler", fehler);	
+		query.setParameter("fehler", fehler);
 		return query.getResultList();
 	}
 
@@ -53,7 +53,9 @@ public class FehlerServiceImpl implements FehlerService {
 	}
 
 	public void fehlerUpdate(Fehler fehler, Fehler verweisFehler, Status status) {
-		fehler.getFehlerVerweise().add(verweisFehler);		
+		if (verweisFehler != null) {
+			fehler.getFehlerVerweise().add(verweisFehler);
+		}
 		fehler.setStatus(status);
 		mergeObject(fehler);
 	}
