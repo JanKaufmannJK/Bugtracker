@@ -1,5 +1,6 @@
 package de.berlin.htw.bugtracker.Nutzer.Service;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -14,7 +15,7 @@ import de.berlin.htw.bugtracker.Nutzer.Domain.Nutzer;
 
 @Service
 @Scope("singleton")
-public class NutzerServiceImpl implements NutzerService {
+public class NutzerServiceImpl implements NutzerService, Serializable {
     
     @PersistenceContext
     private EntityManager em;

@@ -37,8 +37,8 @@ public interface FehlerService {
      */
     public <T> void removeObject(T entity);
     
-    /**
-     * 
+    /** 
+     * Methode bekommt einen Fehler übergeben, welcher aktualisiert werden soll.
      * @param fehler
      * @param verweisFehler
      * @param status
@@ -48,5 +48,7 @@ public interface FehlerService {
     public Object findFehlerId(long fehler_Id);
     
     public List<Kommentar> initFehlerKommentare(Fehler fehler);
+    
+    public List<Fehler> getVerweisListe(Fehler fehler);
 
 }

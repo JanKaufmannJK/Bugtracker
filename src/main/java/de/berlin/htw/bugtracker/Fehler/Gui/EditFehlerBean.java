@@ -44,6 +44,8 @@ public class EditFehlerBean {
     
     private List<Fehler> filteredFehler;
     
+    private List<Fehler> waehlbareVerweise = new ArrayList<Fehler>();
+    
     @PostConstruct
     public void init() {
         nutzerList = nutzerService.selectUsers();
@@ -51,8 +53,9 @@ public class EditFehlerBean {
     
     public String showFehler(Fehler f) {       
         this.setFehler(f);
+        this.setWaehlbareVerweise((fehlerService.getVerweisListe(f)));
         folgeStati = f.getStatus().getStatusNachfolger();
-        return "/editFehler.xhtml";
+        return "editFehler?faces-redirect=true";
     }
     
     public String aendern() {        
@@ -128,6 +131,14 @@ public class EditFehlerBean {
 
 	public void setVerweisFehler(Fehler verweisFehler) {
 		this.verweisFehler = verweisFehler;
+	}
+
+	public List<Fehler> getWaehlbareVerweise() {
+		return waehlbareVerweise;
+	}
+
+	public void setWaehlbareVerweise(List<Fehler> waehlbareVerweise) {
+		this.waehlbareVerweise = waehlbareVerweise;
 	}
     
 }

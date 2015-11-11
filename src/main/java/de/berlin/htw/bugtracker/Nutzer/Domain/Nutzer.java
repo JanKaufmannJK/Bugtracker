@@ -1,5 +1,7 @@
 package de.berlin.htw.bugtracker.Nutzer.Domain;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 /**
@@ -8,7 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "NUTZER")
-public class Nutzer {
+public class Nutzer implements Serializable {
     
     @TableGenerator(name = "bugGen", table = "ID_GEN", pkColumnName = "GEN_KEY", valueColumnName = "GEN_VALUE", pkColumnValue = "NUTZER_ID", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "bugGen")
