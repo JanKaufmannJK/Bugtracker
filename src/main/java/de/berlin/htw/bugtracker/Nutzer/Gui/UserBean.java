@@ -1,5 +1,6 @@
 package de.berlin.htw.bugtracker.Nutzer.Gui;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ import de.berlin.htw.bugtracker.Nutzer.Service.NutzerService;
 
 @Component
 @Scope(value="session", proxyMode = ScopedProxyMode.TARGET_CLASS)
-public class UserBean {
+public class UserBean implements Serializable {
     
     @Autowired
     private NutzerService nutzerService;
