@@ -51,7 +51,7 @@ public class EditFehlerBean {
     
     public String showFehler(Fehler f) {       
         this.setFehler(f);
-        folgeStati = statusService.selectFolgeStati(f.getStatus().getStatusInfo());
+        folgeStati = f.getStatus().getStatusNachfolger();
         return "/editFehler.xhtml";
     }
     

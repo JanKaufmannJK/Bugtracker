@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -32,10 +33,10 @@ public class Status {
 	@Column(name = "BEZEICHNUNG", length = 64)
 	private String bezeichnung;
 
-	@ElementCollection(fetch = FetchType.EAGER)
-	@JoinTable(name = "STATUS_NACHFOLGER", joinColumns = @JoinColumn(name = "STANR") )
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "STATUS_NACHFOLGER", joinColumns = @JoinColumn(name = "STANR") , inverseJoinColumns = @JoinColumn(name = "NACHFOLGER") )
 	@Column(name = "NACHFOLGER")
-	private List<Long> statusInfo = new ArrayList<Long>();
+	private List<Status> statusNachfolger = new ArrayList<Status>();
 
 	@Override
 	public int hashCode() {
@@ -56,12 +57,12 @@ public class Status {
 		return true;
 	}
 
-	public List<Long> getStatusInfo() {
-		return statusInfo;
+	public List<Status> getStatusNachfolger() {
+		return statusNachfolger;
 	}
 
-	public void setStatusInfo(List<Long> statusInfo) {
-		this.statusInfo = statusInfo;
+	public void setStatusNachfolger(List<Status> statusNachfolger) {
+		this.statusNachfolger = statusNachfolger;
 	}
 
 	public Long getStaNr() {

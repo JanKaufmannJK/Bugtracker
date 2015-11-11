@@ -30,6 +30,10 @@ public class FehlerServiceImpl implements FehlerService {
         return em;
     }
     
+    public void test(){
+    	
+    }
+    
     public List<Kommentar> initFehlerKommentare(Fehler fehler) {
         TypedQuery<Kommentar> query = em.createQuery("SELECT k FROM Kommentar k INNER JOIN k.fehler WHERE k.fehler = :fehler", Kommentar.class);
         query.setParameter("fehler", fehler);

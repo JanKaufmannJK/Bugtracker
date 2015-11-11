@@ -62,7 +62,7 @@
 						styleClass="showFehler_fehlerlabel" />
 					<p:dataTable value="#{fehlerBean.fehler.fehlerVerweise}" var="v">
 						<p:column>
-							<p:commandLink id="oeffnen" action="#{fehlerBean.showFehler(v)}" value="#{v.bezeichnung}" update="@form"/>
+							<p:commandLink id="oeffnen" action="#{fehlerBean.showFehler(v)}" value="#{v.bezeichnung}" update="@form" immediate="true"/>
 						</p:column>
 					</p:dataTable>
 				</p:panelGrid>
@@ -121,7 +121,7 @@
 							<p:inputTextarea id="kommentar"
 								styleClass="showFehler_kommentarInput" rows="5"
 								counter="display" maxlength="2000"
-								counterTemplate="{0} Zeichen verbleiben." autoResize="false"
+								counterTemplate="{0} Zeichen verbleiben." autoResize="false" required="true"
 								placeholder="Schreibe einen Kommentar..." value="#{addKommentarBean.kommentar.text}" />
 						</p:column>
 					</p:row>

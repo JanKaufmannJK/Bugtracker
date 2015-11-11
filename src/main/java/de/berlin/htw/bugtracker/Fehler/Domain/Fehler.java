@@ -63,11 +63,11 @@ public class Fehler {
 	@JoinColumn(name = "ERSTELLER")
 	private Nutzer ersteller;	
 	
-	@OneToOne(fetch=FetchType.EAGER)
+	@OneToOne
 	@JoinColumn(name = "BEARBEITER")
 	private Nutzer bearbeiter;	
 
-	@OneToOne(fetch=FetchType.EAGER)
+	@OneToOne
 	@JoinColumn(name = "STANR")
 	private Status status;
 
@@ -88,12 +88,6 @@ public class Fehler {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "FEHLER_VERWEIS", joinColumns = @JoinColumn(name = "FEHLER_ID"), inverseJoinColumns=@JoinColumn(name="VERWEIS_ID") )
 	private List<Fehler> fehlerVerweise = new ArrayList<Fehler>();
-
-	@PostConstruct
-	public void init(){
-	    
-	    Hibernate.initialize(getFehlerVerweise());
-	}
 
 	public Long getFeNr() {
 		return feNr;

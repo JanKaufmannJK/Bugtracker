@@ -12,17 +12,17 @@
 	<context:annotation-config />
 	<context:component-scan base-package="de.berlin.htw" />
 
-	<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"
-		p:driverClassName="com.mysql.jdbc.Driver" p:url="jdbc:mysql://linex-design.de/htw_db"
-		p:username="htw_db" p:password="dbws15/16" p:initSQL="SELECT 1"
-		p:validationQuery="SELECT 1" p:logValidationErrors="false"
-		p:logAbandoned="false" p:testOnBorrow="true" />
+<!-- 	<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource" -->
+<!-- 		p:driverClassName="com.mysql.jdbc.Driver" p:url="jdbc:mysql://linex-design.de/htw_db" -->
+<!-- 		p:username="htw_db" p:password="dbws15/16" p:initSQL="SELECT 1" -->
+<!-- 		p:validationQuery="SELECT 1" p:logValidationErrors="false" -->
+<!-- 		p:logAbandoned="false" p:testOnBorrow="true" /> -->
 
-	<!-- <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource" -->
-	<!-- p:driverClassName="com.mysql.jdbc.Driver" p:url="jdbc:mysql://localhost:3306/bugtracker" -->
-	<!-- p:username="admin" p:password="admin" p:initSQL="SELECT 1" -->
-	<!-- p:validationQuery="SELECT 1" p:logValidationErrors="false" -->
-	<!-- p:logAbandoned="false" p:testOnBorrow="true" /> -->
+	<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"
+	p:driverClassName="com.mysql.jdbc.Driver" p:url="jdbc:mysql://localhost:3306/bugtracker"
+	p:username="admin" p:password="admin" p:initSQL="SELECT 1"
+	p:validationQuery="SELECT 1" p:logValidationErrors="false"
+	p:logAbandoned="false" p:testOnBorrow="true" />
 
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
