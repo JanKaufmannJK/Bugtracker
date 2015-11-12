@@ -14,7 +14,6 @@ import de.berlin.htw.bugtracker.Fehler.Service.FehlerService;
 import de.berlin.htw.bugtracker.Nutzer.Domain.Nutzer;
 import de.berlin.htw.bugtracker.Nutzer.Service.NutzerService;
 import de.berlin.htw.bugtracker.Status.Domain.Status;
-import de.berlin.htw.bugtracker.Status.Service.StatusService;
 
 @Component
 @Scope("singleton")
@@ -22,9 +21,6 @@ public class EditFehlerBean {
     
     @Autowired
     private FehlerService fehlerService;
-    
-    @Autowired
-    private StatusService statusService;
     
     @Autowired
     private NutzerService nutzerService;
