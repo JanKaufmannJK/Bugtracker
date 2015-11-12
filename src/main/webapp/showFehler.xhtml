@@ -61,8 +61,15 @@
 					<h:outputText value="Fehlerverweise: "
 						styleClass="showFehler_fehlerlabel" />
 					<p:dataTable value="#{fehlerBean.fehler.fehlerVerweise}" var="v">
-						<p:column>
+						<p:column styleClass="verweisCol">
 							<p:commandLink id="oeffnen" action="#{fehlerBean.showFehler(v)}" value="#{v.bezeichnung}" update="@form" immediate="true"/>
+						</p:column>
+						<p:column styleClass="deleteCol">
+							<p:commandButton id="loeschen"
+								style="width: 20px; height:20px;" icon="ui-icon-trash"
+								immediate="true"
+								action="#{fehlerBean.removeVerweis(v)}"
+								update="@form" title="löschen" />						
 						</p:column>
 					</p:dataTable>
 				</p:panelGrid>

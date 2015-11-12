@@ -104,10 +104,19 @@ body {
        width: 100px;
        vertical-align: top;
 }
+
 .showFehler_secondColumn {
        min-width: 600px;
 }
 
 .nopadding {
 	spacing:100px;
+}
+
+.verweisCol {
+	width:50%;
+}
+
+.deleteCol {
+	width:50%;text-align:right;
 }

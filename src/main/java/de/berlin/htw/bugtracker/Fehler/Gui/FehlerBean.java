@@ -49,5 +49,10 @@ public class FehlerBean {
 	public void setProjektBean(ProjektBean projektBean) {
 		this.projektBean = projektBean;
 	}
+	
+    public void removeVerweis(Fehler v){
+    	fehler.getFehlerVerweise().remove(v);
+    	fehlerService.mergeObject(fehler);
+    }
 
 }
