@@ -34,7 +34,7 @@ public class EditFehlerBean {
     
     private Fehler verweisFehler = new Fehler();
     
-    private Status status = new Status();
+    private Status status = null;
     
     private List<Status> folgeStati = null;
     
