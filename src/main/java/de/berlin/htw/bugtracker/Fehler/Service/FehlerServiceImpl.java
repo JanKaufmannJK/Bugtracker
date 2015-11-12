@@ -51,6 +51,11 @@ public class FehlerServiceImpl implements FehlerService {
 		query.setParameter("fehler", fehler);
 		return query.getResultList();
 	}
+	
+	public void removeVerweis(Fehler fehler, Fehler verweisFehler){
+		fehler.getFehlerVerweise().remove(verweisFehler);
+		mergeObject(fehler);
+	}
 
 	public void fehlerUpdate(Fehler fehler, Fehler verweisFehler, Status status) {
 		if (verweisFehler != null) {

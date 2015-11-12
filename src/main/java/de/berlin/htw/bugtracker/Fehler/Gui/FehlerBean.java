@@ -10,20 +10,23 @@ import de.berlin.htw.bugtracker.Fehler.Service.FehlerService;
 @Component
 @Scope("singleton")
 public class FehlerBean {
-	
+
 	@Autowired
 	private FehlerService fehlerService;
-	
-	
+
 	private Fehler fehler = new Fehler();
-	
+
 	@Autowired
 	private ProjektBean projektBean;
-	
-	public String showFehler(Fehler fehler){
-	    fehler.setKommentarList(fehlerService.initFehlerKommentare(fehler));
+
+	public String showFehler(Fehler fehler) {
+		fehler.setKommentarList(fehlerService.initFehlerKommentare(fehler));
 		this.setFehler(fehler);
 		return "success";
+	}
+
+	public void removeVerweis(Fehler verweisFehler) {
+		fehlerService.removeVerweis(fehler, verweisFehler);
 	}
 
 	public FehlerService getBugtrackerService() {
@@ -49,10 +52,5 @@ public class FehlerBean {
 	public void setProjektBean(ProjektBean projektBean) {
 		this.projektBean = projektBean;
 	}
-	
-    public void removeVerweis(Fehler v){
-    	fehler.getFehlerVerweise().remove(v);
-    	fehlerService.mergeObject(fehler);
-    }
 
 }

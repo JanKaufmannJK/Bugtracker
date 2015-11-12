@@ -95,4 +95,11 @@ public interface FehlerService {
 	 */
 	public List<Fehler> getVerweisListe(Fehler fehler);
 
+	/**
+	 * Methode um einen bereits verweisten Fehler aus der Liste eines spezifischen Fehlers zu löschen.
+	 * 
+	 * @param fehler			der Fehler der die VerweisFehler-Liste enthält
+	 * @param verweisFehler		der zu löschende Fehler aus der VerweisListe
+	 */
+	public void removeVerweis(Fehler fehler, Fehler verweisFehler);
 }
