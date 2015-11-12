@@ -19,5 +19,118 @@
       		org.springframework.web.jsf.el.SpringBeanFacesELResolver
     	</el-resolver>
   	</application>
-
+  	
+	<navigation-rule>
+	    <from-view-id>/chooseUser.xhtml</from-view-id>
+	    <navigation-case>
+	        <from-action>#{userBean.save}</from-action>
+	        <from-outcome>success</from-outcome>
+	        <to-view-id>/projektList.xhtml</to-view-id>
+			<redirect />
+	    </navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+	    <from-view-id>/projektList.xhtml</from-view-id>
+	    <navigation-case>
+	        <from-action>#{projektBean.showProjekt(p)}</from-action>
+	        <from-outcome>success</from-outcome>
+	        <to-view-id>/showProjekt.xhtml?faces-redirect=true</to-view-id>
+			<redirect />
+	    </navigation-case>
+	    <navigation-case>
+	        <from-outcome>add</from-outcome>
+	        <to-view-id>/addProjekt.xhtml</to-view-id>
+			<redirect />
+	    </navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+	    <from-view-id>/showProjekt.xhtml</from-view-id>
+	    <navigation-case>
+	        <from-action>#{fehlerBean.showFehler(f)}</from-action>
+	        <from-outcome>success</from-outcome>
+	        <to-view-id>/showFehler.xhtml</to-view-id>
+			<redirect />
+	    </navigation-case>
+	    <navigation-case>
+	        <from-action>#{editFehlerBean.showFehler(f)}</from-action>
+	        <from-outcome>success</from-outcome>
+	        <to-view-id>/editFehler.xhtml</to-view-id>
+			<redirect />
+	    </navigation-case>
+	    <navigation-case>
+	        <from-outcome>add</from-outcome>
+	        <to-view-id>/addFehler.xhtml</to-view-id>
+			<redirect />
+	    </navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+	    <from-view-id>/addFehler.xhtml</from-view-id>
+	    <navigation-case>
+	        <from-action>#{addFehlerBean.speichern}</from-action>
+	        <from-outcome>success</from-outcome>
+	        <to-view-id>/showProjekt.xhtml</to-view-id>
+			<redirect />
+	    </navigation-case>
+	    <navigation-case>
+	        <from-outcome>cancel</from-outcome>
+	        <to-view-id>/showProjekt.xhtml</to-view-id>
+			<redirect />
+	    </navigation-case>
+	</navigation-rule>	
+	<navigation-rule>
+	    <from-view-id>/editFehler.xhtml</from-view-id>
+	    <navigation-case>
+	        <from-action>#{editFehlerBean.aendern}</from-action>
+	        <from-outcome>success</from-outcome>
+	        <to-view-id>/showProjekt.xhtml</to-view-id>
+			<redirect />
+	    </navigation-case>
+	    <navigation-case>
+	        <from-outcome>cancel</from-outcome>
+	        <to-view-id>/showProjekt.xhtml</to-view-id>
+			<redirect />
+	    </navigation-case>
+	</navigation-rule>	
+	<navigation-rule>
+	    <from-view-id>/showFehler.xhtml</from-view-id>
+	    <navigation-case>
+	        <from-outcome>back</from-outcome>
+	        <to-view-id>/showProjekt.xhtml</to-view-id>
+			<redirect />
+	    </navigation-case>
+	    <navigation-case>
+	    	<from-action>#{editKommentarBean.showKommentar(k)}</from-action>
+	        <from-outcome>success</from-outcome>
+	        <to-view-id>/editKommentar.xhtml</to-view-id>
+			<redirect />
+	    </navigation-case>
+	</navigation-rule>	
+	<navigation-rule>
+	    <from-view-id>/editKommentar.xhtml</from-view-id>
+	    <navigation-case>
+	        <from-action>#{editKommentarBean.aendern}</from-action>
+	        <from-outcome>success</from-outcome>
+	        <to-view-id>/showFehler.xhtml</to-view-id>
+			<redirect />
+	    </navigation-case>
+	    <navigation-case>
+	        <from-outcome>cancel</from-outcome>
+	        <to-view-id>/showFehler.xhtml</to-view-id>
+			<redirect />
+	    </navigation-case>
+	</navigation-rule>	
+	<navigation-rule>
+	    <from-view-id>/addProjekt.xhtml</from-view-id>
+	    <navigation-case>
+	        <from-action>#{addProjektBean.speichern}</from-action>
+	        <from-outcome>success</from-outcome>
+	        <to-view-id>/projektList.xhtml</to-view-id>
+			<redirect />
+	    </navigation-case>
+	    <navigation-case>
+	        <from-outcome>cancel</from-outcome>
+	        <to-view-id>/projektList.xhtml</to-view-id>
+			<redirect />
+	    </navigation-case>
+	</navigation-rule>	
 </faces-config>

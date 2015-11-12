@@ -55,13 +55,13 @@ public class EditFehlerBean {
         this.setFehler(f);
         this.setWaehlbareVerweise((fehlerService.getVerweisListe(f)));
         folgeStati = f.getStatus().getStatusNachfolger();
-        return "editFehler?faces-redirect=true";
+        return "success";
     }
     
     public String aendern() {        
         fehlerService.fehlerUpdate(fehler, verweisFehler, status);
         verweisFehler = new Fehler();
-        return "showProjekt?faces-redirect=true";
+        return "success";
     }
     
     public void toggleFehler(Fehler f) {

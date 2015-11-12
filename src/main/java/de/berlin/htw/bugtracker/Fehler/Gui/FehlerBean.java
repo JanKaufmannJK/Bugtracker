@@ -23,7 +23,7 @@ public class FehlerBean {
 	public String showFehler(Fehler fehler){
 	    fehler.setKommentarList(fehlerService.initFehlerKommentare(fehler));
 		this.setFehler(fehler);
-		return "showFehler?faces-redirect=true";
+		return "success";
 	}
 
 	public FehlerService getBugtrackerService() {

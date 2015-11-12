@@ -53,7 +53,7 @@
 						<p:commandButton id="save" action="#{addFehlerBean.speichern}"
 							value="Speichern" icon="ui-icon-disk" update="@form" />
 			
-						<p:commandButton id="cancel" action="showProjekt?faces-redirect=true"
+						<p:button id="cancel" outcome="cancel"
 							value="Abbrechen" immediate="true" icon="ui-icon-close" />
 
 					</p:panelGrid>

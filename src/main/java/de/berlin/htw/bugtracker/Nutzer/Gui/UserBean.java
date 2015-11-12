@@ -34,7 +34,7 @@ public class UserBean implements Serializable {
     
     public String save(){
     	isUserSet = true;
-    	return "projektList?faces-redirect=true";
+    	return "success";
     }
     
     public String logout(){

@@ -88,7 +88,7 @@ public class AddFehlerBean {
 		fehlerService.persistObject(fehler);
 		fehler = new Fehler();
 
-		return "showProjekt?faces-redirect=true";
+		return "success";
 	}
 
 	public ProjektBean getProjektBean() {

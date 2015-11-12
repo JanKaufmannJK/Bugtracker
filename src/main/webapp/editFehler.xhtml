@@ -73,7 +73,7 @@
 						<p:commandButton id="save" action="#{editFehlerBean.aendern}"
 							value="Speichern" icon="ui-icon-disk" update="errorMessages" />
 
-						<p:commandButton id="cancel" action="/showProjekt.xhtml"
+						<p:button id="cancel" outcome="cancel"
 							value="Abbrechen" immediate="true" icon="ui-icon-close" />
 					</p:panelGrid>
 				</p:panelGrid>

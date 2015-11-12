@@ -22,7 +22,7 @@ public class EditKommentarBean {
 
 	public String showKommentar(Kommentar kommentar) {		
 		this.setKommentar(kommentar);
-		return "editKommentar?faces-redirect=true";
+		return "success";
 	}
 	
 	public void removeKommentar(Kommentar kommentar){
@@ -33,7 +33,7 @@ public class EditKommentarBean {
 	public String aendern(){
 	    fehlerService.mergeObject(kommentar);
 		kommentar = new Kommentar();
-		return "showFehler?faces-redirect=true";
+		return "success";
 	}
 
 	public FehlerBean getFehlerBean() {
