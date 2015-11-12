@@ -34,7 +34,7 @@
 	    <navigation-case>
 	        <from-action>#{projektBean.showProjekt(p)}</from-action>
 	        <from-outcome>success</from-outcome>
-	        <to-view-id>/showProjekt.xhtml?faces-redirect=true</to-view-id>
+	        <to-view-id>/showProjekt.xhtml</to-view-id>
 			<redirect />
 	    </navigation-case>
 	    <navigation-case>
@@ -104,6 +104,12 @@
 	        <to-view-id>/editKommentar.xhtml</to-view-id>
 			<redirect />
 	    </navigation-case>
+	    <navigation-case>
+	    	<from-action>#{fehlerBean.showFehler(v)}</from-action>
+	        <from-outcome>success</from-outcome>
+	        <to-view-id>/showFehler.xhtml</to-view-id>
+			<redirect />
+	    </navigation-case>	     
 	</navigation-rule>	
 	<navigation-rule>
 	    <from-view-id>/editKommentar.xhtml</from-view-id>
